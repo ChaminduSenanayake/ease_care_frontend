@@ -1,14 +1,14 @@
 
 import React, {Component} from "react";
+import logo from '../../assets/images/logo.png';
 import '../../assets/css/SideBar-Style.css';
 import {
     AiFillDashboard,
-    AiFillFileAdd,
     FaAmbulance,
     FaHeartbeat, HiViewGridAdd,
     ImUsers,
     MdSettings,
-    RiHeartAddFill, RiMapPinAddLine, SiAddthis
+    RiHeartAddFill, RiMapPinAddLine
 } from "react-icons/all";
 
 class Sidebar extends Component{
@@ -17,12 +17,12 @@ class Sidebar extends Component{
         return(
             <nav id="sidebar">
                 <div className="sidebar-header">
-                    <h3>Ease Care</h3>
+                    <img src={logo} width="210" height="55" />
                 </div>
 
                 <ul className="list-unstyled components">
                     <li>
-                        <a href="#"><AiFillDashboard/>  Dashboard</a>
+                        <a href="/#"><AiFillDashboard/>  Dashboard</a>
                     </li>
                     <li>
                         <div className="dropdown dropend">
@@ -52,7 +52,7 @@ class Sidebar extends Component{
                         <a href="/#"><ImUsers/>  Users</a>
                     </li>
                     <li>
-                        <a href="#"><MdSettings/> Settings</a>
+                        <a href="/#"><MdSettings/> Settings</a>
                     </li>
                 </ul>
             </nav>
