@@ -1,0 +1,36 @@
+import React, {Component} from "react";
+import '../../assets/css/Navbar-Style.css';
+import $ from "jquery";
+import {BsLayoutSidebarInset, FcAssistant} from "react-icons/all";
+
+class NavBar extends Component{
+
+    render() {
+        const toggleFunction = () => {
+                $('#sidebar').toggleClass('active');
+        }
+        return(
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <button type="button" id="sidebarCollapse" className="btn btn-secondary"
+                            onClick={toggleFunction}>
+                        <span><BsLayoutSidebarInset size='20px'/></span>
+                    </button>
+
+                    {/*className="collapse navbar-collapse"*/}
+                    <div  id="navbarSupportedContent">
+                        <ul className="nav navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/#"><FcAssistant size='30px'/> Admin</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        );
+    }
+
+}
+
+export default NavBar;
+
