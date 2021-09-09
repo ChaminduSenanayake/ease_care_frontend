@@ -22,7 +22,7 @@ class Sidebar extends Component{
 
                 <ul className="list-unstyled components">
                     <li>
-                        <a href="/#"><AiFillDashboard/>  Dashboard</a>
+                        <a href="/dashboard"><AiFillDashboard/>  Dashboard</a>
                     </li>
                     <li>
                         <div className="dropdown dropend">
@@ -31,7 +31,7 @@ class Sidebar extends Component{
                                 <FaHeartbeat/>  Health Services
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a className="dropdown-item" href="/#"><RiHeartAddFill size='30px' /> Add new</a></li>
+                                <li><a className="dropdown-item" href="addNewService"><RiHeartAddFill size='30px' /> Add new</a></li>
                                 <li><a className="dropdown-item" href="/#"><HiViewGridAdd size='30px'/> View Services</a></li>
                             </ul>
                         </div>

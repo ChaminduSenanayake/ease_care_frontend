@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-class AddNew extends Component{
+class AddNewService extends Component{
     render() {
         return(
             <form>
@@ -21,4 +21,4 @@ class AddNew extends Component{
         );
     }
 }
-export default AddNew;
+export default AddNewService;
