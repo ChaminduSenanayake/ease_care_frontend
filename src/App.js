@@ -1,31 +1,31 @@
 import './assets/css/App.css';
-import Sidebar from "./components/Sidebar/Sidebar";
+import SideBar from "./components/Sidebar/SideBar";
 import NavBar from "./components/Navbar/NavBar";
 import Dashboard from "./components/Dashboard/Dashboard";
-import {BrowserRouter,Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import AddNewService from "./components/HeathService/AddNewService";
 
 function App() {
     return (
         <div className="App">
             <div className="wrapper">
-                <Sidebar/>
-                <div id="content">
-                    <NavBar/>
-                    <BrowserRouter>
-                        <Route path="/dashboard">
-                            <Dashboard/>
-                        </Route>
-                        <Route path="/addNewService">
-                            <AddNewService/>
-                        </Route>
-                    </BrowserRouter>
-
-                </div>
+                <BrowserRouter>
+                    <SideBar/>
+                    <div id="content">
+                        <NavBar/>
+                        <Switch>
+                            <Route path="/addNewService">
+                                <AddNewService/>
+                            </Route>
+                            <Route path="/">
+                                <Dashboard/>
+                            </Route>
+                        </Switch>
+                    </div>
+                </BrowserRouter>
             </div>
         </div>
     );
-
 }
 
 export default App;

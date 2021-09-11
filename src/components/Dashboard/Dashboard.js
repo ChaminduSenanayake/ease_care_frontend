@@ -1,12 +1,9 @@
 import React, {Component} from "react";
 import '../../assets/css/Dashboard-Style.css';
-import {Chart} from "chart.js";
-import $ from "jquery";
 class Dashboard extends Component {
 
     render() {
         return (
-
             <div>
                 <div className="container-fluid">
                     <ol className="breadcrumb">
@@ -24,7 +21,7 @@ class Dashboard extends Component {
                                     </div>
                                     <div className="mr-5">26 New Messages!</div>
                                 </div>
-                                <a className="card-footer text-white clearfix small z-1" href="#">
+                                <a className="card-footer text-white clearfix small z-1" href="/#">
                                     <span className="float-left">View Details</span>
                                     <span className="float-right"></span>
                                 </a>
@@ -38,7 +35,7 @@ class Dashboard extends Component {
                                     </div>
                                     <div className="mr-5">11 New Tasks!</div>
                                 </div>
-                                <a className="card-footer text-white clearfix small z-1" href="#">
+                                <a className="card-footer text-white clearfix small z-1" href="/#">
                                     <span className="float-left">View Details</span>
                                     <span className="float-right"></span>
                                 </a>
@@ -51,7 +48,7 @@ class Dashboard extends Component {
                                     </div>
                                     <div className="mr-5">123 New Orders!</div>
                                 </div>
-                                <a className="card-footer text-white clearfix small z-1" href="#">
+                                <a className="card-footer text-white clearfix small z-1" href="/#">
                                     <span className="float-left">View Details</span>
                                     <span className="float-right"></span>
                                 </a>
@@ -80,7 +77,7 @@ class Dashboard extends Component {
                             <div className="row">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977"
-                                    width="100%" height="310" frameBorder="0"  allowFullScreen></iframe>
+                                    width="100%" height="310" frameBorder="0"  allowFullScreen title="#"></iframe>
                             </div>
                     </div>
                     <div className="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
