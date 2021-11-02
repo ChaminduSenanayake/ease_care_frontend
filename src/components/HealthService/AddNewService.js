@@ -1,25 +1,25 @@
 import React, {Component} from "react";
-class AddNewService extends Component{
-    render() {
+import "../../assets/css/healthService-Style.css"
+function AddNewService(){
         return(
             <form>
-                <div className="row">
-                    <div className="col-md-6 col-md-offset-3">
+                <div className="row ms-2">
+                    <div className="col-md-12 col-md-offset-3">
                         <div className="panel panel-primary">
-                            <div className="panel-heading">Thank you for Sign Up!</div>
+                            <div className="panel-heading"><h3>Add New Health Service</h3></div>
                             <div className="panel-body">
                                 <form method="post" action="" accept-charset="UTF-8">
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="fname">First Name</label>
                                         <input type="text" id="fname" className="form-control" name="fname"
                                                placeholder="Example: John"/>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="lname">Last Name</label>
                                         <input type="text" id="lname" className="form-control" name="lname"
                                                placeholder="Example: Doe"/>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="states">Select your State</label>
                                         <select id="states" className="form-control" name="state">
                                             <option value="unknown">Unknown</option>
@@ -75,7 +75,7 @@ class AddNewService extends Component{
                                             <option value="wyoming">Wyoming</option>
                                         </select>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="gender">Your Gender</label>
                                         <select id="gender" className="form-control" name="gender">
                                             <option value="unknown">Unknown</option>
@@ -84,22 +84,22 @@ class AddNewService extends Component{
                                             <option value="other">Other</option>
                                         </select>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="emailaddr">Email Address</label>
                                         <input type="text" id="emailaddr" className="form-control" name="email"
                                                placeholder="Example: john.doe@gmail.com"/>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="password">Password</label>
                                         <input type="password" id="password" className="form-control" name="password"
                                                placeholder=""/>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group m-2">
                                         <label htmlFor="verifypass">Verify Password</label>
                                         <input type="password" id="confirmpass" className="form-control"
                                                name="verifypass" placeholder=""/>
                                     </div>
-                                    <div className="form-group text-center">
+                                    <div className="form-group text-center m-2">
                                         <button type="submit" className="btn btn-primary btn-lg" id="submitbtn"
                                                 name="submit">Sign up!
                                         </button>
@@ -111,6 +111,5 @@ class AddNewService extends Component{
                 </div>
             </form>
         );
-    }
 }
 export default AddNewService;

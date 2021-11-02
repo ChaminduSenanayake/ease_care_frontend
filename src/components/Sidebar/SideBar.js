@@ -12,9 +12,7 @@ import {
     RiHeartAddFill, RiMapPinAddLine
 } from "react-icons/all";
 
-
-class SideBar extends Component{
-    render() {
+function SideBar(){
         return(
             <nav id="sidebar">
                 <div className="sidebar-header">
@@ -58,6 +56,5 @@ class SideBar extends Component{
                 </ul>
             </nav>
         );
-    }
 }
 export default SideBar;

@@ -23,7 +23,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #3c4b64;
+    background: #12344C;
     color: #fff;
     transition: all 0.3s;
 }
@@ -34,7 +34,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #46546c;
+    background: #1A394E;
 }
 
 #sidebar ul.components {
@@ -50,7 +50,7 @@ a:focus {
     padding: 20px;
     font-size: 1.1em;
     display: block;
-   text-align: left;
+    text-align: left;
     padding-left: 30px;
 }
 .dropdown-toggle{

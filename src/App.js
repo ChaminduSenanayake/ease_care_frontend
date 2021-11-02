@@ -3,7 +3,7 @@ import SideBar from "./components/Sidebar/SideBar";
 import NavBar from "./components/Navbar/NavBar";
 import Dashboard from "./components/Dashboard/Dashboard";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import AddNewService from "./components/HeathService/AddNewService";
+import AddNewService from "./components/HealthService/AddNewService";
 
 function App() {
     return (

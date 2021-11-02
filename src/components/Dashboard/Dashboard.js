@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import '../../assets/css/Dashboard-Style.css';
-class Dashboard extends Component {
-
-    render() {
+function Dashboard(){
         return (
             <div>
                 <div className="container-fluid">
@@ -19,10 +17,10 @@ class Dashboard extends Component {
                                     <div className="card-body-icon">
                                         <i className="fa fa-fw fa-comments"></i>
                                     </div>
-                                    <div className="mr-5">26 New Messages!</div>
+                                    <div className="mr-5">Total Ambulance Services</div>
                                 </div>
                                 <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">View Details</span>
+                                    <span className="float-left">10</span>
                                     <span className="float-right"></span>
                                 </a>
                             </div>
@@ -33,10 +31,10 @@ class Dashboard extends Component {
                                     <div className="card-body-icon">
                                         <i className="fa fa-fw fa-list"></i>
                                     </div>
-                                    <div className="mr-5">11 New Tasks!</div>
+                                    <div className="mr-5">Total Ambulances</div>
                                 </div>
                                 <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">View Details</span>
+                                    <span className="float-left">128</span>
                                     <span className="float-right"></span>
                                 </a>
                             </div>
@@ -46,10 +44,10 @@ class Dashboard extends Component {
                                 <div className="card-body">
                                     <div className="card-body-icon">
                                     </div>
-                                    <div className="mr-5">123 New Orders!</div>
+                                    <div className="mr-5">Total General Users</div>
                                 </div>
                                 <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">View Details</span>
+                                    <span className="float-left">1000</span>
                                     <span className="float-right"></span>
                                 </a>
                             </div>
@@ -59,10 +57,10 @@ class Dashboard extends Component {
                                 <div className="card-body">
                                     <div className="card-body-icon">
                                     </div>
-                                    <div className="mr-5">13 New Tickets!</div>
+                                    <div className="mr-5">Available Ambulances</div>
                                 </div>
                                 <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">View Details</span>
+                                    <span className="float-left">10</span>
                                     <span className="float-right"></span>
                                 </a>
                             </div>
@@ -122,7 +120,6 @@ class Dashboard extends Component {
                 {/*</div>*/}
             </div>
         )
-    }
 }
 export default Dashboard;
 
