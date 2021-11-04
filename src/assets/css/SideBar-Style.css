@@ -23,7 +23,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #12344C;
+    background-image: linear-gradient(to bottom,#00446d, #71343e);
     color: #fff;
     transition: all 0.3s;
 }
@@ -32,9 +32,11 @@ a:focus {
     margin-left: -250px;
 }
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #1A394E;
+
+#sidebar .sidebar-header img {
+    max-width: 200px;
+    margin-top: 15px;
+    margin-left: 25px;
 }
 
 #sidebar ul.components {
@@ -48,7 +50,7 @@ a:focus {
 
 #sidebar ul li a {
     padding: 20px;
-    font-size: 1.1em;
+    font-size: 1.0em;
     display: block;
     text-align: left;
     padding-left: 30px;

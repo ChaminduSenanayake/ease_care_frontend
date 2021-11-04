@@ -1,6 +1,10 @@
-import React, {Component} from "react";
+import React, {useEffect} from "react";
 import '../../assets/css/Dashboard-Style.css';
+import $ from "jquery";
 function Dashboard(){
+    useEffect(() => {
+        $('#navBarTitle').text("Dashboard");
+    });
         return (
             <div>
                 <div className="container-fluid">
@@ -11,7 +15,7 @@ function Dashboard(){
                         <li className="breadcrumb-item active">My Dashboard</li>
                     </ol>
                     <div className="row">
-                        <div className="col-xl-3 col-sm-6 mb-3">
+                        <div className="col-xl-3 col-sm-6 mb-4">
                             <div className="card text-white o-hidden h-100" id="top-card-1">
                                 <div className="card-body">
                                     <div className="card-body-icon">
@@ -25,7 +29,7 @@ function Dashboard(){
                                 </a>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-sm-6 mb-3">
+                        <div className="col-xl-3 col-sm-6 mb-4">
                             <div className="card text-white o-hidden h-100" id="top-card-2">
                                 <div className="card-body">
                                     <div className="card-body-icon">
@@ -39,7 +43,7 @@ function Dashboard(){
                                 </a>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-sm-6 mb-3">
+                        <div className="col-xl-3 col-sm-6 mb-4">
                             <div className="card text-white o-hidden h-100" id="top-card-3">
                                 <div className="card-body">
                                     <div className="card-body-icon">
@@ -52,7 +56,7 @@ function Dashboard(){
                                 </a>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-sm-6 mb-3">
+                        <div className="col-xl-3 col-sm-6 mb-4">
                             <div className="card text-white o-hidden h-100" id="top-card-4">
                                 <div className="card-body">
                                     <div className="card-body-icon">
@@ -67,18 +71,17 @@ function Dashboard(){
                         </div>
                     </div>
                 </div>
-                <div className="card mb-3">
+                <div className="card mb-2 location-card">
                     <div className="card-header">
-                        <i className="fa fa-area-chart"></i> Area Chart Example
+                         Ambulance locations
                     </div>
                     <div className="card-body">
                             <div className="row">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977"
-                                    width="100%" height="310" frameBorder="0"  allowFullScreen title="#"></iframe>
+                                    width="100%" height="356" frameBorder="0"  allowFullScreen title="#"></iframe>
                             </div>
                     </div>
-                    <div className="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
                 {/*<div className="row">*/}
                 {/*    <div className="col-lg-8">*/}

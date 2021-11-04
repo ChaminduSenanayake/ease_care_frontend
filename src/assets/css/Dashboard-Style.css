@@ -1,13 +1,22 @@
 #top-card-1{
     background-color: #2471A3;
+    background-image: linear-gradient(to bottom, #CB4335, #a05b59);
+
 }
 #top-card-2{
     background-color:#99A3A4;
+    background-image: linear-gradient(to bottom, #576c6c, #a3a1a1);
 }
 #top-card-3{
     background-color:#16A085;
+    background-image: linear-gradient(to bottom, #16A085, #14b9bd);
 }
 #top-card-4{
     background-color: #CB4335;
+    background-image: linear-gradient(to bottom, #286b9a, #53cbec);
 }
+.location-card .card-header{
+    background: #ffffff;
+}
+
 

@@ -1,0 +1,15 @@
+.btn-save{
+    color: white;
+    background-color:#00446d;
+}
+.btn-save:hover{
+    color: white;
+    background-color:#1972AF;
+}
+.container{
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.19);
+    background-color: white;
+}
+.form-control{
+    margin-top: 5px;
+}

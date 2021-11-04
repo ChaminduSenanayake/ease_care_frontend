@@ -1,12 +1,24 @@
 .navbar {
-    padding: 15px 10px;
-    background: #fff;
+    padding: 10px 10px;
+    background: white;
     border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius:20px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
-
+#navBarTitle{
+    color: #0466a1;
+    font-size:2vw;
+    margin: 0;
+}
+#sidebarCollapse span{
+    color: #0466a1;
+}
+@media only screen and (max-width: 600px) {
+    #navBarTitle{
+        font-size:3vw;
+    }
+}
 
 
 

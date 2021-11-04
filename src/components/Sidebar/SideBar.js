@@ -1,5 +1,5 @@
 
-import React, {Component} from "react";
+import React from "react";
 import logo from '../../assets/images/logo.png';
 import '../../assets/css/SideBar-Style.css';
 import {Link} from "react-router-dom";
@@ -16,7 +16,7 @@ function SideBar(){
         return(
             <nav id="sidebar">
                 <div className="sidebar-header">
-                    <img src={logo} width="210" height="55" alt="Logo" />
+                    <img src={logo} alt="Logo" />
                 </div>
 
                 <ul className="list-unstyled components">
@@ -25,24 +25,24 @@ function SideBar(){
                     </li>
                     <li>
                         <div className="dropdown dropend">
-                            <Link className="btn dropdown-toggle" role="button"
+                            <Link to="/#" className="btn dropdown-toggle" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <FaHeartbeat/>  Health Services
+                                <FaHeartbeat/>  Ambulance Services
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><Link className="dropdown-item" to="addNewService"><RiHeartAddFill size='30px' /> Add new</Link></li>
+                                <li><Link className="dropdown-item" to="/addNewService"><RiHeartAddFill size='30px' /> Add new</Link></li>
                                 <li><Link className="dropdown-item" to="/#"><HiViewGridAdd size='30px'/> View Services</Link></li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <div className="dropdown dropend">
-                            <Link className="btn dropdown-toggle" role="button"
+                            <Link to="/#" className="btn dropdown-toggle" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <FaAmbulance/>   Ambulances
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><Link className="dropdown-item" to="/#"><RiMapPinAddLine size='30px'/> Add new</Link></li>
+                                <li><Link className="dropdown-item" to="/addNewAmbulance"><RiMapPinAddLine size='30px'/> Add new</Link></li>
                                 <li><Link className="dropdown-item" to="/#"><HiViewGridAdd size='30px'/> View Ambulances</Link></li>
                             </ul>
                         </div>

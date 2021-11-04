@@ -9,13 +9,13 @@ function NavBar() {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
-                <button type="button" id="sidebarCollapse" className="btn btn-secondary"
+                <button type="button" id="sidebarCollapse" className="btn"
                         onClick={toggleFunction}>
-                    <span><BsLayoutSidebarInset size='20px'/></span>
+                    <span><BsLayoutSidebarInset size='30px'/></span>
                 </button>
-
+                <h3 id={"navBarTitle"}>New Health service</h3>
                 {/*className="collapse navbar-collapse"*/}
                 <div id="navbarSupportedContent">
                     <ul className="nav navbar-nav ms-auto">
