@@ -1,15 +1,15 @@
 import React, {useEffect} from "react";
-import "../../assets/css/AmbulanceService-Style.css"
 import $ from "jquery";
+import "../../assets/css/AmbulanceService-Style.css"
 
 function AddNewService() {
     useEffect(() => {
         $('#navBarTitle').text("New Ambulance Service");
     });
     return (
-        <div className="row m-1">
+        <div className="row m-1 ">
             <div className="container col-md-12 col-md-offset-3">
-                <div className="panel panel-primary p-4">
+                <div className="panel panel-primary p-4 mt-4">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
                             <a href="/addNewService">Ambulance Service</a>
@@ -18,28 +18,28 @@ function AddNewService() {
                     </ol>
                     <div className="panel-body">
                         <form method="post" action="" accept-charset="UTF-8">
-                            <div className="form-group mt-3">
+                            <div className="form-group">
                                 <label>Service Name</label>
                                 <input type="text" id="serviceName" className="form-control" name="serviceName"/>
                             </div>
-                            <div className="form-group mt-4">
+                            <div className="form-group">
                                 <label>Hospital Name</label>
                                 <input type="text" id="hospitalName" className="form-control" name="hospitalName"/>
                             </div>
-                            <div className="form-group mt-4">
+                            <div className="form-group">
                                 <label>Address</label>
                                 <input type="text" id="address" className="form-control" name="address"/>
                             </div>
-                            <div className="form-group mt-4">
+                            <div className="form-group">
                                 <label>Contact Number</label>
                                 <input type="text" id="contactNumber" className="form-control" name="contactNumber"/>
                             </div>
-                            <div className="form-group mt-4">
+                            <div className="form-group">
                                 <label>Email</label>
                                 <input type="text" id="email" className="form-control" name="email"/>
                             </div>
 
-                            <div className="form-group text-end mt-4">
+                            <div className="form-group text-end mb-4">
                                 <button type="submit" className="btn btn-save btn-lg px-5" id="submitbtn"
                                         name="submit">Register
                                 </button>

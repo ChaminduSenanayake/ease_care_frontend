@@ -18,5 +18,15 @@
 .location-card .card-header{
     background: #ffffff;
 }
+.location-card .card-body .row{
+    padding-bottom:40%;
+    position:relative;
+}
 
-
+.location-card .card-body .row iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
