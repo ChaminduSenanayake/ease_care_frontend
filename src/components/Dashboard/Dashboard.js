@@ -1,9 +1,11 @@
-import React, {useEffect} from "react";
+import {useEffect} from 'react';
 import '../../assets/css/Dashboard-Style.css';
-import $ from "jquery";
+import $ from 'jquery';
+import AmbulanceLocations from './AmbulanceLocations';
+import TopCard from './TopCard';
 function Dashboard(){
     useEffect(() => {
-        $('#navBarTitle').text("Dashboard");
+        $('#navBarTitle').text('Dashboard');
     });
         return (
             <div>
@@ -15,75 +17,30 @@ function Dashboard(){
                         <li className="breadcrumb-item active">My Dashboard</li>
                     </ol>
                     <div className="row">
-                        <div className="col-xl-3 col-sm-6 mb-4">
-                            <div className="card text-white o-hidden h-100" id="top-card-1">
-                                <div className="card-body">
-                                    <div className="card-body-icon">
-                                        <i className="fa fa-fw fa-comments"></i>
-                                    </div>
-                                    <div className="mr-5">Total Ambulance Services</div>
-                                </div>
-                                <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">10</span>
-                                    <span className="float-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="col-xl-3 col-sm-6 mb-4">
-                            <div className="card text-white o-hidden h-100" id="top-card-2">
-                                <div className="card-body">
-                                    <div className="card-body-icon">
-                                        <i className="fa fa-fw fa-list"></i>
-                                    </div>
-                                    <div className="mr-5">Total Ambulances</div>
-                                </div>
-                                <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">128</span>
-                                    <span className="float-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="col-xl-3 col-sm-6 mb-4">
-                            <div className="card text-white o-hidden h-100" id="top-card-3">
-                                <div className="card-body">
-                                    <div className="card-body-icon">
-                                    </div>
-                                    <div className="mr-5">Total General Users</div>
-                                </div>
-                                <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">1000</span>
-                                    <span className="float-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="col-xl-3 col-sm-6 mb-4">
-                            <div className="card text-white o-hidden h-100" id="top-card-4">
-                                <div className="card-body">
-                                    <div className="card-body-icon">
-                                    </div>
-                                    <div className="mr-5">Available Ambulances</div>
-                                </div>
-                                <a className="card-footer text-white clearfix small z-1" href="/#">
-                                    <span className="float-left">10</span>
-                                    <span className="float-right"></span>
-                                </a>
-                            </div>
-                        </div>
+                        <TopCard
+                            name="Total Ambulance Services"
+                            value={18}
+                            id="top-card-1"
+                        />
+                        <TopCard
+                            name="Total Ambulances"
+                            value={100}
+                            id="top-card-2"
+                        />
+                        <TopCard
+                            name="Total General Users"
+                            value={1000}
+                            id="top-card-3"
+                        />
+                        <TopCard
+                            name="Available Ambulances"
+                            value={88}
+                            id="top-card-4"
+                        />
                     </div>
                 </div>
-                <div className="card mb-2 location-card">
-                    <div className="card-header">
-                         Ambulance locations
-                    </div>
-                    <div className="card-body">
-                            <div className="row">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977"
-                                    width="100%" frameBorder="0"  allowFullScreen title="#"></iframe>
-                            </div>
-                    </div>
-                </div>
-                {/*<div className="row">*/}
+                <AmbulanceLocations/>
+                {/* <div className="row">*/}
                 {/*    <div className="col-lg-8">*/}
                 {/*        <div className="card mb-3">*/}
                 {/*            <div className="card-header">*/}
@@ -120,7 +77,7 @@ function Dashboard(){
                 {/*            <div className="card-footer small text-muted">Updated yesterday at 11:59 PM</div>*/}
                 {/*        </div>*/}
                 {/*    </div>*/}
-                {/*</div>*/}
+                {/* </div>*/}
             </div>
         )
 }

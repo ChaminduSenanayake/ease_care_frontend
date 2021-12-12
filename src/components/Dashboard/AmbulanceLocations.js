@@ -1,0 +1,18 @@
+import React from "react";
+function AmbulanceLocations() {
+    return (
+        <div className="card mb-2 location-card">
+            <div className="card-header">
+                Ambulance locations
+            </div>
+            <div className="card-body">
+                <div className="row">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977"
+                        width="100%" height="400" frameBorder="0" allowFullScreen title="#"></iframe>
+                </div>
+            </div>
+        </div>
+    )
+}
+export default AmbulanceLocations;
