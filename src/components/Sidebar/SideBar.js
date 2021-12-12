@@ -1,4 +1,3 @@
-
 import React from "react";
 import logo from '../../assets/images/logo.png';
 import '../../assets/css/SideBar-Style.css';
@@ -6,10 +5,10 @@ import {Link} from "react-router-dom";
 import {
     AiFillDashboard,
     FaAmbulance,
-    FaHeartbeat, HiViewGridAdd,
+    HiViewGridAdd,
     ImUsers,
     MdSettings,
-    RiHeartAddFill, RiMapPinAddLine
+    RiHeartAddFill
 } from "react-icons/all";
 
 function SideBar(){
@@ -24,28 +23,13 @@ function SideBar(){
                         <Link to="/"><AiFillDashboard/>  Dashboard</Link>
                     </li>
                     <li>
-                        <div className="dropdown dropend">
-                            <Link to="/#" className="btn dropdown-toggle" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <FaHeartbeat/>  Ambulance Services
-                            </Link>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><Link className="dropdown-item" to="/addNewService"><RiHeartAddFill size='30px' /> Add new</Link></li>
-                                <li><Link className="dropdown-item" to="/#"><HiViewGridAdd size='30px'/> View Services</Link></li>
-                            </ul>
-                        </div>
+                        <Link to="/ambulanceService"><RiHeartAddFill/> Ambulance Services</Link>
                     </li>
                     <li>
-                        <div className="dropdown dropend">
-                            <Link to="/#" className="btn dropdown-toggle" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <FaAmbulance/>   Ambulances
-                            </Link>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><Link className="dropdown-item" to="/addNewAmbulance"><RiMapPinAddLine size='30px'/> Add new</Link></li>
-                                <li><Link className="dropdown-item" to="/#"><HiViewGridAdd size='30px'/> View Ambulances</Link></li>
-                            </ul>
-                        </div>
+                        <Link to="/addNewService"><HiViewGridAdd/> Payments</Link>
+                    </li>
+                    <li>
+                        <Link to="/addNewAmbulance"><FaAmbulance/> Ambulances</Link>
                     </li>
                     <li>
                         <Link to="/#"><ImUsers/>  Users</Link>
