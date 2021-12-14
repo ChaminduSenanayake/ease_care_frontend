@@ -1,7 +1,7 @@
 import React from "react";
 function AmbulanceLocations() {
     return (
-        <div className="card mb-2 location-card">
+        <div className="card mb-4 location-card">
             <div className="card-header">
                 Ambulance locations
             </div>

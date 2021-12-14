@@ -1,6 +1,11 @@
 import DataTable from  'react-data-table-component'
 function ServiceTable(props) {
     const customStyles = {
+        table:{
+            style:{
+                border: "1px solid #EAEAEA"
+            }
+        },
         rows: {
             style: {
                 minHeight: '56px', // override the row height
@@ -18,6 +23,7 @@ function ServiceTable(props) {
             },
         }
     };
+
     const tableColumns = [
         {
             name: 'ServiceName',
