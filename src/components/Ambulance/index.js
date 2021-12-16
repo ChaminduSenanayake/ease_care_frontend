@@ -3,13 +3,13 @@ import Modal from "react-bootstrap/Modal";
 import $ from "jquery";
 import "../../assets/css/AmbulanceService-Style.css";
 import { HiPlus } from "react-icons/all";
-import AddNewService from "./AddNewService";
-import ServiceTable from "./ServiceTable";
+import AddNewAmbulance from "./AddNewAmbulance";
+import AmbulanceTable from "./AmbulanceTable";
 import addNewAmbulance from "../Ambulance/AddNewAmbulance";
 
 function AmbulanceService() {
   useEffect(() => {
-    $("#navBarTitle").text("AMBULANCE  SERVICE");
+    $("#navBarTitle").text("AMBULANCE ");
   });
   const [modalVisible, setModalVisible] = useState(false);
   const handleClose = () => setModalVisible(false);
@@ -19,69 +19,38 @@ function AmbulanceService() {
   const dataset = [
     {
       serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
+      vehicleNumber: "1234V",
+      driverName: "Ariyapala",
+      driverNIC: "87909089V",
+      contactNumber: "0789098987",
     },
     {
       serviceName: "General",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
+      vehicleNumber: "5678V",
+      driverName: "Sumanadasa",
+      driverNIC: "81234567V",
+      contactNumber: "0778965678",
     },
     {
       serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
+      vehicleNumber: "1786v",
+      driverName: "Nimal",
+      driverNIC: "85674534V",
+      contactNumber: "0712345678",
     },
     {
       serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
+      vehicleNumber: "6756V",
+      driverName: "Thiranga",
+      driverNIC: "64567898V",
+      contactNumber: "0779809890",
     },
     {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
-    },
-    {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
-    },
-    {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
-    },
-    {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
-    },
-    {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
-    },
-    {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "10019",
-      email: "abc@gmail.com",
-    },
-    {
-      serviceName: "Suwaseriya",
-      hospitalName: "General",
-      contactNumber: "1919",
-      email: "abc@gmail.com",
+      serviceName: "General",
+      vehicleNumber: "1245V",
+      driverName: "Milan",
+      driverNIC: "96787876V",
+      contactNumber: "0775656789",
     },
   ];
 
@@ -103,11 +72,11 @@ function AmbulanceService() {
   return (
     <div>
       <Modal show={modalVisible} onHide={handleClose} size="lg" centered>
-        <AddNewService onClose={handleClose} />
+        <AddNewAmbulance onClose={handleClose} />
       </Modal>
       <div className="topDiv text-end mt-5 me-5">
         <button className="btn btn-addNew" onClick={handleShow}>
-          <HiPlus size="35px" /> Add New Service
+          <HiPlus size="35px" /> Add New Ambulance
         </button>
       </div>
 
@@ -120,7 +89,7 @@ function AmbulanceService() {
             onClear={handleClear}
           />
         </div>
-        <ServiceTable
+        <AmbulanceTable
           ambulanceServices={filteredItems}
           totalData={15}
           loading={loading}

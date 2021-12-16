@@ -29,7 +29,7 @@ function SideBar(){
                         <Link to="/addNewService"><HiViewGridAdd/> Payments</Link>
                     </li>
                     <li>
-                        <Link to="/addNewAmbulance"><FaAmbulance/> Ambulances</Link>
+                        <Link to="/Ambulance"><FaAmbulance/> Ambulances</Link>
                     </li>
                     <li>
                         <Link to="/#"><ImUsers/>  Users</Link>
