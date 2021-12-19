@@ -1,4 +1,5 @@
 import DataTable from  'react-data-table-component'
+import "../../assets/css/AmbulanceService-Style.css";
 function ServiceTable(props) {
     const customStyles = {
         table:{
@@ -26,8 +27,8 @@ function ServiceTable(props) {
 
     const tableColumns = [
         {
-            name: 'ServiceName',
-            selector: 'serviceName',
+            name: 'ServiceProviderName',
+            selector: 'serviceProviderName',
             sortable: true,
             left: false,
             minWidth: '100px',
@@ -49,12 +50,6 @@ function ServiceTable(props) {
         {
             name: 'Email',
             selector: 'email',
-            sortable: true,
-            center: false,
-        },
-        {
-            name: 'Payment Status',
-            selector: 'paymentStatus',
             sortable: true,
             center: false,
         },
@@ -98,7 +93,7 @@ function ServiceTable(props) {
                         />
                         :
                         <div className="row pl-3 pr-4 justify-content-center">
-                            <label htmlFor="exampleFormControlInput1">
+                            <label className="lblTableEmpty" htmlFor="exampleFormControlInput1">
                                 There are no records to display
                             </label>
                         </div>

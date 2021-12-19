@@ -1,13 +1,22 @@
 import {useForm} from "react-hook-form";
 import '../../assets/css/Login-Style.css';
 import logo from '../../assets/images/logo.png'
+import {notifyToast} from "../Common/ToastNotification";
+import $ from "jquery";
 
 function Login(props) {
     const {register, handleSubmit} = useForm();
     const loginHandler = data => {
-        // let userName = data?.userName;
-        // let password = data?.password;
-        props.setToken(121);
+        let userName = data?.userName;
+        let password = data?.password;
+        if(userName==="admin" && password==="admin"){
+            props.setToken(121);
+        }else{
+            $("#userName").val("")
+            $("#password").val("")
+            notifyToast("Invalid Inputs","error");
+        }
+
     }
     return (
         <div className="login fadeInDown">
@@ -19,10 +28,10 @@ function Login(props) {
                 </div>
 
                 <form onSubmit={handleSubmit(loginHandler)}>
-                    <input type="text" id="userName" className="fadeIn second" {...register("userName")}
-                           placeholder="username" autocomplete="off"/>
-                    <input type="text" id="password" className="fadeIn third" {...register("password")}
-                           placeholder="password" autocomplete="off"/>
+                    <input id="userName" className="fadeIn second" {...register("userName")}
+                           placeholder="username" autoComplete="off"/>
+                    <input type="password" id="password" className="fadeIn third " {...register("password")}
+                           placeholder="password" autoComplete="off"/>
                     <input type="submit" className="fadeIn fourth mt-4" value="Log In"/>
                 </form>
 
