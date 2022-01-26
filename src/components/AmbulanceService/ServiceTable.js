@@ -1,29 +1,25 @@
 import DataTable from  'react-data-table-component'
 import "../../assets/css/AmbulanceService-Style.css";
+import React, {useState} from "react";
+import Modal from "react-bootstrap/Modal";
+import EditService from "./EditService";
+import {customStyles} from "../Common/styles";
 function ServiceTable(props) {
-    const customStyles = {
-        table:{
-            style:{
-                border: "1px solid #EAEAEA"
-            }
-        },
-        rows: {
-            style: {
-                minHeight: '56px', // override the row height
-            },
-        },
-        headCells:{
-            style:{
-                fontSize:'15px',
-                fontWeight:'bold'
-            }
-        },
-        cells: {
-            style: {
-                fontSize:'15px'
-            },
-        }
-    };
+    const [editModalVisible, setEditModalVisible] = useState(false);
+    const handleEditClose = () => setEditModalVisible(false);
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+    const handleDeleteClose = () => setDeleteModalVisible(false);
+
+    const [selectedProvider, setSelectedProvider] = useState(null);
+
+    const showEditModal = (data) => {
+        setSelectedProvider(data);
+        setEditModalVisible(true);
+    }
+    const showDeleteModal = (data) => {
+        setSelectedProvider(data);
+        setDeleteModalVisible(true);
+    }
 
     const tableColumns = [
         {
@@ -63,10 +59,10 @@ function ServiceTable(props) {
                 return (
                     <>
                         <button className="btn btn-sm btn-secondary" type="button"
-                                onClick={() => props.onActionClick(row, true)}>Edit
+                                onClick={() => showEditModal(row, true)}>Edit
                         </button>
                         <button className="btn btn-sm btn-danger mx-2" type="button"
-                                onClick={() => props.onActionClick(row, false)}>Delete
+                                onClick={() => showDeleteModal(row, true)}>Delete
                         </button>
                     </>
                 )
@@ -76,6 +72,12 @@ function ServiceTable(props) {
 
     return (
         <div className="col">
+            <Modal show={editModalVisible} onHide={handleEditClose} size="lg" centered>
+                <EditService selectedProvider={selectedProvider} onClose={handleEditClose}/>
+            </Modal>
+            <Modal show={deleteModalVisible} onHide={handleDeleteClose} size="lg" centered>
+                <EditService selectedProvider={selectedProvider} onClose={handleDeleteClose}/>
+            </Modal>
             <div className="row">
                 <div className="col mt-3 pl-0 pr-0">
                     {props.ambulanceServices.length !== 0 ?

@@ -1,37 +1,49 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import $ from "jquery";
 import "../../assets/css/AmbulanceService-Style.css";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
-import { REGISTER_AMBULANCE_SERVICE} from "../Common/Endpoints";
+import {DELETE_AMBULANCE_SERVICE} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
+import {styles} from "../Common/styles";
+import {useMountEffect} from "@react-hookful/core";
 
-function AddNewService(props) {
+function DeleteService(props) {
     const { register, handleSubmit , errors} = useForm();
+    const [serviceProviderId, setServiceProviderId] = useState(null);
+    const [serviceProviderName, setServiceProviderName] = useState(null);
+    const [hospitalName, setHospitalName] = useState(null);
+    const [address, setAddress] = useState(false);
+    const [contactNumber, setContactNumber] = useState(null);
+    const [email, setEmail] = useState(null);
 
-    useEffect(() => {
-        $("#navBarTitle").text("New Ambulance Service");
-    });
+    useMountEffect(() => {
+        setServiceProviderId(props.selectedProvider.serviceProviderId);
+        setServiceProviderName(props.selectedProvider.serviceProviderName);
+        setHospitalName(props.selectedProvider.hospitalName);
+        setAddress(props.selectedProvider.address);
+        setContactNumber(props.selectedProvider.contactNumber);
+        setEmail(props.selectedProvider.email);
+    })
 
-
-    const registerService = data => {
+    const editService = data => {
         const formatedData = {
             ...data,
             registeredDate: parseInt(new Date()),
-            serviceProviderId:0,
+            serviceProviderId:props.serviceProviderId,
         };
         axios({
-            method: 'POST',
-            url: REGISTER_AMBULANCE_SERVICE,
+            method: 'DELETE',
+            url: DELETE_AMBULANCE_SERVICE,
             data: formatedData
         }).then(response => {
             props.onClose();
-            notifyToast('successfully Registerd',"success");
+            notifyToast('successfully Deleted',"success");
         }).catch(error => {
             if (error?.response?.data?.code === 401) {
                 console.log("Logged-out");
             }
-            notifyToast('Error creating new ambulance service',"error");
+            notifyToast('Error deleting the ambulance service',"error");
         })
     }
 
@@ -42,14 +54,15 @@ function AddNewService(props) {
             </label>
             <hr/>
             <div>
-                <form onSubmit={handleSubmit(registerService)}>
+                <form onSubmit={handleSubmit(editService)}>
                     <div className="row form-group">
                         <label>Service Name</label>
                         <input
                             id="serviceProviderName"
                             className="form-control col"
                             name="serviceProviderName"
-                            {...register("serviceProviderName",{required : true})}
+                            value={serviceProviderName}
+                            {...register("serviceProviderName")}
                         />
                     </div>
                     <div className="row form-group">
@@ -58,7 +71,8 @@ function AddNewService(props) {
                             id="hospitalName"
                             className="form-control col"
                             name="hospitalName"
-                            {...register("hospitalName",{required : true})}
+                            value={hospitalName}
+                            {...register("hospitalName")}
                         />
                     </div>
                     <div className="row form-group">
@@ -67,7 +81,8 @@ function AddNewService(props) {
                             id="address"
                             className="form-control col"
                             name="address"
-                            {...register("address",{required : true})}
+                            value={address}
+                            {...register("address")}
                         />
                     </div>
                     <div className="row form-group">
@@ -76,7 +91,8 @@ function AddNewService(props) {
                             id="contactNumber"
                             className="form-control col"
                             name="contactNumber"
-                            {...register("contactNumber",{required : true , pattern : /^[0-9]{10}$/})}
+                            value={contactNumber}
+                            {...register("contactNumber")}
                         />
                     </div>
                     <div className="row form-group">
@@ -86,7 +102,8 @@ function AddNewService(props) {
                             id="email"
                             className="form-control col"
                             name="email"
-                            {...register("email",{required : true})}
+                            value={email}
+                            {...register("email")}
                         />
                     </div>
                     <div className="row form-group text-end mt-4">
@@ -95,7 +112,7 @@ function AddNewService(props) {
                             className="btn btn-save btn-lg px-5"
                             id="submitbtn"
                             name="submit"
-                        >Register</button>
+                        >Delete</button>
                         <button
                             type="button"
                             className="btn btn-danger btn-lg px-5"
@@ -109,4 +126,4 @@ function AddNewService(props) {
     );
 }
 
-export default AddNewService;
+export default EditService;

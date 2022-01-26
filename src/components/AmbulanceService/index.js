@@ -62,7 +62,6 @@ function AmbulanceService() {
                 <ServiceTable
                     ambulanceServices={filteredItems}
                     totalData={15}
-                    onActionClick={addNewAmbulance}
                 />
             </div>
         </div>
