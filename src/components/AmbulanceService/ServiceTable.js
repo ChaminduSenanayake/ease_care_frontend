@@ -4,6 +4,8 @@ import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import EditService from "./EditService";
 import {customStyles} from "../Common/styles";
+import {ExpandedRow} from "./ExpandedRow";
+import DeleteService from "./DeleteService";
 function ServiceTable(props) {
     const [editModalVisible, setEditModalVisible] = useState(false);
     const handleEditClose = () => setEditModalVisible(false);
@@ -11,7 +13,6 @@ function ServiceTable(props) {
     const handleDeleteClose = () => setDeleteModalVisible(false);
 
     const [selectedProvider, setSelectedProvider] = useState(null);
-
     const showEditModal = (data) => {
         setSelectedProvider(data);
         setEditModalVisible(true);
@@ -20,20 +21,12 @@ function ServiceTable(props) {
         setSelectedProvider(data);
         setDeleteModalVisible(true);
     }
-
     const tableColumns = [
         {
             name: 'ServiceProviderName',
             selector: 'serviceProviderName',
             sortable: true,
             left: false,
-            minWidth: '100px',
-        },
-        {
-            name: 'Hospital Name',
-            selector: 'hospitalName',
-            sortable: true,
-            center: false,
             minWidth: '100px',
         },
         {
@@ -46,6 +39,12 @@ function ServiceTable(props) {
         {
             name: 'Email',
             selector: 'email',
+            sortable: true,
+            center: false,
+        },
+        {
+            name: 'Status',
+            selector: 'paymentStatus',
             sortable: true,
             center: false,
         },
@@ -73,14 +72,14 @@ function ServiceTable(props) {
     return (
         <div className="col">
             <Modal show={editModalVisible} onHide={handleEditClose} size="lg" centered>
-                <EditService selectedProvider={selectedProvider} onClose={handleEditClose}/>
+                <EditService selectedProvider={selectedProvider} onClose={handleEditClose} refreshTable={props.refreshTable}/>
             </Modal>
             <Modal show={deleteModalVisible} onHide={handleDeleteClose} size="lg" centered>
-                <EditService selectedProvider={selectedProvider} onClose={handleDeleteClose}/>
+                <DeleteService selectedProvider={selectedProvider} onClose={handleDeleteClose} refreshTable={props.refreshTable}/>
             </Modal>
             <div className="row">
                 <div className="col mt-3 pl-0 pr-0">
-                    {props.ambulanceServices.length !== 0 ?
+                    {props.ambulanceServices.length !== 0?
                         <DataTable
                             className="table-sm w-100"
                             columns={tableColumns}
@@ -90,8 +89,12 @@ function ServiceTable(props) {
                             highlightOnHover
                             pointerOnHover
                             pagination={true}
-                            progressPending={props.loading}
                             customStyles={customStyles}
+                            expandableRows={true}
+                            expandOnRowClicked={true}
+                            expandOnRowDoubleClicked={false}
+                            expandableRowsHideExpander={false}
+                            expandableRowsComponent={ExpandedRow}
                         />
                         :
                         <div className="row pl-3 pr-4 justify-content-center">
@@ -101,9 +104,11 @@ function ServiceTable(props) {
                         </div>
                     }
 
+
                 </div>
             </div>
         </div>
+
     )
 
 }

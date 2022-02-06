@@ -15,7 +15,7 @@ function NavBar() {
                         onClick={toggleFunction}>
                     <span><BsLayoutSidebarInset size='30px'/></span>
                 </button>
-                <h3 id={"navBarTitle"}>New Health service</h3>
+                <h3 id={"navBarTitle"}>Ease Care</h3>
                 {/*className="collapse navbar-collapse"*/}
                 <div id="navbarSupportedContent">
                     <ul className="nav navbar-nav ms-auto">

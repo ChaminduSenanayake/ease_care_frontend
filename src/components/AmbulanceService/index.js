@@ -5,34 +5,43 @@ import "../../assets/css/AmbulanceService-Style.css";
 import {HiPlus} from "react-icons/all";
 import AddNewService from "./AddNewService";
 import ServiceTable from "./ServiceTable";
-import addNewAmbulance from "../Ambulance/AddNewAmbulance";
 import {GET_AMBULANCE_SERVICES} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import axios from 'axios';
+import Spinner from "../Common/spinner";
+import {STATUS} from "../Common/const";
 
 function AmbulanceService() {
     useEffect(() => {
-        $("#navBarTitle").text("AMBULANCE  SERVICE");
+        $("#navBarTitle").text("AMBULANCE  SERVICES");
     });
     const [modalVisible, setModalVisible] = useState(false);
     const handleClose = () => setModalVisible(false);
     const handleShow = () => setModalVisible(true);
     const [dataSet, setDataSet] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
+        setLoading(true);
         axios({
             method: 'GET',
             url: GET_AMBULANCE_SERVICES,
         }).then(response => {
+            setLoading(false);
             setDataSet(response.data);
+            if(response.data.paymentStatus === undefined || response.data.paymentStatus === null){
+                response.data.paymentStatus = STATUS[1];
+            }
         }).catch(error => {
-            if (error.response) {
+            if (error.data) {
                 notifyToast('Error', "error");
             } else {
                 notifyToast("You are Offline!", "warning");
             }
+            setLoading(false);
         });
-    })
+    },[count])
     const [filterText, setFilterText] = useState("");
     const filteredItems = dataSet.filter(
         (item) =>
@@ -43,7 +52,7 @@ function AmbulanceService() {
     return (
         <div>
             <Modal show={modalVisible} onHide={handleClose} size="lg" centered>
-                <AddNewService onClose={handleClose}/>
+                <AddNewService onClose={handleClose}  refreshTable={() => setCount(count+1)}/>
             </Modal>
             <div className="topDiv text-end mt-5 me-5">
                 <button className="btn btn-addNew" onClick={handleShow}>
@@ -59,10 +68,15 @@ function AmbulanceService() {
                         onChange={(e) => setFilterText(e.target.value)}
                     />
                 </div>
-                <ServiceTable
-                    ambulanceServices={filteredItems}
-                    totalData={15}
-                />
+                {loading?
+                    <Spinner/>
+                    :
+                    <ServiceTable
+                        ambulanceServices={filteredItems}
+                        totalData={15}
+                        refreshTable={() => setCount(count+1)}
+                    />
+                }
             </div>
         </div>
     );

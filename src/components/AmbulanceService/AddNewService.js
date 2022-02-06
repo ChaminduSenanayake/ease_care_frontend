@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import axios from 'axios';
 import { REGISTER_AMBULANCE_SERVICE} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
+import moment from "moment";
 
 function AddNewService(props) {
     const { register, handleSubmit , errors} = useForm();
@@ -13,25 +14,24 @@ function AddNewService(props) {
         $("#navBarTitle").text("New Ambulance Service");
     });
 
-
+console.log(new Date())
     const registerService = data => {
         const formatedData = {
             ...data,
-            registeredDate: parseInt(new Date()),
+            registeredDate: moment(new Date()).unix(),
             serviceProviderId:0,
+
         };
         axios({
             method: 'POST',
             url: REGISTER_AMBULANCE_SERVICE,
             data: formatedData
         }).then(response => {
+            props.refreshTable();
             props.onClose();
             notifyToast('successfully Registerd',"success");
         }).catch(error => {
-            if (error?.response?.data?.code === 401) {
-                console.log("Logged-out");
-            }
-            notifyToast('Error creating new ambulance service',"error");
+            notifyToast('Error creating new ambulance service'+error,"error");
         })
     }
 
