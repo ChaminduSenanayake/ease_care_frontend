@@ -6,6 +6,10 @@ import {HiPlus} from "react-icons/all";
 import AddNewAmbulance from "./AddNewAmbulance";
 import AmbulanceTable from "./AmbulanceTable";
 import addNewAmbulance from "../Ambulance/AddNewAmbulance";
+import axios from "axios";
+import {GET_AMBULANCE_SERVICES} from "../Common/Endpoints";
+import {STATUS} from "../Common/const";
+import {notifyToast} from "../Common/ToastNotification";
 
 function AmbulanceService() {
     useEffect(() => {
@@ -14,46 +18,31 @@ function AmbulanceService() {
     const [modalVisible, setModalVisible] = useState(false);
     const handleClose = () => setModalVisible(false);
     const handleShow = () => setModalVisible(true);
+    const [dataSet, setDataSet] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [count, setCount] = useState(0);
 
-    const dataset = [
-        {
-            serviceName: "Suwaseriya",
-            vehicleNumber: "1234V",
-            driverName: "Ariyapala",
-            driverNIC: "87909089V",
-            contactNumber: "0789098987",
-        },
-        {
-            serviceName: "General",
-            vehicleNumber: "5678V",
-            driverName: "Sumanadasa",
-            driverNIC: "81234567V",
-            contactNumber: "0778965678",
-        },
-        {
-            serviceName: "Suwaseriya",
-            vehicleNumber: "1786v",
-            driverName: "Nimal",
-            driverNIC: "85674534V",
-            contactNumber: "0712345678",
-        },
-        {
-            serviceName: "Suwaseriya",
-            vehicleNumber: "6756V",
-            driverName: "Thiranga",
-            driverNIC: "64567898V",
-            contactNumber: "0779809890",
-        },
-        {
-            serviceName: "General",
-            vehicleNumber: "1245V",
-            driverName: "Milan",
-            driverNIC: "96787876V",
-            contactNumber: "0775656789",
-        },
-    ];
 
+    useEffect(() => {
+        setLoading(true);
+        axios({
+            method: 'GET',
+            url: GET_AMBULANCE_SERVICES,
+        }).then(response => {
+            setLoading(false);
+            setDataSet(response.data);
+            if(response.data.paymentStatus === undefined || response.data.paymentStatus === null){
+                response.data.paymentStatus = STATUS[1];
+            }
+        }).catch(error => {
+            if (error.data) {
+                notifyToast('Error', "error");
+            } else {
+                notifyToast("You are Offline!", "warning");
+            }
+            setLoading(false);
+        });
+    },[count])
     const [filterText, setFilterText] = useState("");
     const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
     const filteredItems = dataset.filter(

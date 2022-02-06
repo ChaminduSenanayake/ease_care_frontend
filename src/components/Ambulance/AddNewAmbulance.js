@@ -8,52 +8,6 @@ function AddNewAmbulance(props) {
         $("#navBarTitle").text("New Ambulance ");
     });
 
-    const dataset = [
-        {
-            serviceName: "Suwaseriya",
-            hospitalName: "General",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-        {
-            serviceName: "General Hospital",
-            hospitalName: "General Hospital",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-        {
-            serviceName: "Lanka Hospital",
-            hospitalName: "Lanka Hospital",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-        {
-            serviceName: "Asiri Hospital",
-            hospitalName: "Asiri Hospital",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-        {
-            serviceName: "St John Ambulance Sri Lanka, National Head Quarters",
-            hospitalName: "-",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-        {
-            serviceName: "International Ambulance Service Sri Lanka\n",
-            hospitalName: "-",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-        {
-            serviceName: "Royal Ambulance Service",
-            hospitalName: "-",
-            contactNumber: "1919",
-            email: "abc@gmail.com",
-        },
-    ];
-
-
     return (
         <div className="p-5">
             <label>
