@@ -7,7 +7,7 @@ import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
 
 function DeleteService(props) {
-    const { register, handleSubmit , errors} = useForm();
+    const { register, handleSubmit } = useForm();
     const [serviceProviderId, setServiceProviderId] = useState(null);
     const [serviceProviderName, setServiceProviderName] = useState(null);
     const [hospitalName, setHospitalName] = useState(null);

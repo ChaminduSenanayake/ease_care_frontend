@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "../../assets/css/Ambulance-Style.css";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {notifyToast} from "../Common/ToastNotification";
 import {REGISTER_AMBULANCE} from "../Common/Endpoints";
-import $ from "jquery";
 import SelectDropdown from "./SelectDropdown";
 
 function AddNewAmbulance(props) {
@@ -36,7 +35,6 @@ function AddNewAmbulance(props) {
             data: formatedData
         }).then(response => {
             props.refreshTable();
-            props.setServiceProviderId(serviceProvider);
             props.onClose();
             notifyToast('successfully Registerd',"success");
         }).catch(error => {
@@ -102,18 +100,18 @@ function AddNewAmbulance(props) {
                     <div className="row form-group">
                         <label>User Name</label>
                         <input
-                            id="userName"
+                            id="userNameReg"
                             className="form-control col"
-                            name="userName"
+                            name="userNameReg"
                             {...register("userName",{required : true})}
                         />
                     </div>
                     <div className="row form-group">
                         <label>Password</label>
                         <input
-                            id="password"
+                            id="passwordReg"
                             className="form-control col"
-                            name="password"
+                            name="passwordReg"
                             type="password"
                             {...register("password",{required : true})}
                         />

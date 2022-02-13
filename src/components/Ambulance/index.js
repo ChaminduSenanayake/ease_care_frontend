@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import $ from "jquery";
-import "../../assets/css/AmbulanceService-Style.css";
+import "../../assets/css/Ambulance-Style.css";
 import {HiPlus} from "react-icons/all";
 import AddNewAmbulance from "./AddNewAmbulance";
 import AmbulanceTable from "./AmbulanceTable";
@@ -62,14 +62,14 @@ function AmbulanceService() {
 
     useEffect(() => {
         getAmbulances();
-    },[serviceProviderId,count])
+    },[serviceProviderId,count ,serviceProviders])
 
     const getAmbulances =() => {
         console.log(serviceProviderId)
         setLoading(true);
         axios({
             method: 'GET',
-            url: serviceProviderId == -1 ? GET_AMBULANCES : GET_AMBULANCES_BY_PROVIDER +"/" +serviceProviderId,
+            url: serviceProviderId === -1 ? GET_AMBULANCES : GET_AMBULANCES_BY_PROVIDER +"/" +serviceProviderId,
         }).then(response => {
             setLoading(false);
             if(response.data){
@@ -90,7 +90,7 @@ function AmbulanceService() {
     return (
         <div>
             <Modal show={modalVisible} onHide={handleClose} size="lg" centered>
-                <AddNewAmbulance onClose={handleClose} serviceProviders={serviceProviders} setServiceProviderId={setServiceProviderId} refreshTable={() => setCount(count+1)}/>
+                <AddNewAmbulance onClose={handleClose} serviceProviders={serviceProviders} refreshTable={() => setCount(count+1)}/>
             </Modal>
             <div className="mx-5">
                 <div className="mt-5">
@@ -108,16 +108,16 @@ function AmbulanceService() {
                         <HiPlus size="35px"/> Add New Ambulance
                     </button>
                 </div>
-                {/*{loading ?*/}
-                {/*    <Spinner/>*/}
-                {/*    :*/}
-                {/*    <AmbulanceTable*/}
-                {/*        ambulances={ambulances}*/}
-                {/*        totalData={15}*/}
-                {/*        loading={loading}*/}
-                {/*        onActionClick={addNewAmbulance}*/}
-                {/*    />*/}
-                {/*}*/}
+                {loading ?
+                    <Spinner/>
+                    :
+                    <AmbulanceTable
+                        ambulances={ambulances}
+                        totalData={15}
+                        onActionClick={addNewAmbulance}
+                        refreshTable={() => setCount(count+1)}
+                    />
+                }
             </div>
         </div>
     );

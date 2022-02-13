@@ -1,30 +1,29 @@
 import DataTable from  'react-data-table-component'
-import "../../assets/css/AmbulanceService-Style.css";
+import "../../assets/css/Ambulance-Style.css";
 import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
-import EditService from "./EditService";
+import EditAmbulance from "./EditAmbulance";
 import {customStyles} from "../Common/styles";
-import {ExpandedRow} from "./ExpandedRow";
-import DeleteService from "./DeleteService";
+import DeleteService from "./DeleteAmbulance";
 function AmbulanceTable(props) {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const handleEditClose = () => setEditModalVisible(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const handleDeleteClose = () => setDeleteModalVisible(false);
 
-  const [selectedProvider, setSelectedProvider] = useState(null);
+  const [selectedAmbulance, setSelectedAmbulance] = useState(null);
   const showEditModal = (data) => {
-    setSelectedProvider(data);
+    setSelectedAmbulance(data);
     setEditModalVisible(true);
   }
   const showDeleteModal = (data) => {
-    setSelectedProvider(data);
+    setSelectedAmbulance(data);
     setDeleteModalVisible(true);
   }
   const tableColumns = [
     {
-      name: 'ServiceProviderName',
-      selector: 'serviceProviderName',
+      name: 'Vehicle Number',
+      selector: 'vehicleNumber',
       sortable: true,
       left: false,
       minWidth: '100px',
@@ -37,14 +36,14 @@ function AmbulanceTable(props) {
       minWidth: '100px',
     },
     {
-      name: 'Email',
-      selector: 'email',
+      name: 'Driver Name',
+      selector: 'driverName',
       sortable: true,
       center: false,
     },
     {
-      name: 'Status',
-      selector: 'paymentStatus',
+      name: 'Driver NIC',
+      selector: 'driverNIC',
       sortable: true,
       center: false,
     },
@@ -72,14 +71,14 @@ function AmbulanceTable(props) {
   return (
       <div className="col">
         <Modal show={editModalVisible} onHide={handleEditClose} size="lg" centered>
-          <EditService selectedProvider={selectedProvider} onClose={handleEditClose} refreshTable={props.refreshTable}/>
+          <EditAmbulance selectedAmbulance={selectedAmbulance} onClose={handleEditClose} refreshTable={props.refreshTable}/>
         </Modal>
         <Modal show={deleteModalVisible} onHide={handleDeleteClose} size="lg" centered>
-          <DeleteService selectedProvider={selectedProvider} onClose={handleDeleteClose} refreshTable={props.refreshTable}/>
+          <DeleteService selectedAmbulance={selectedAmbulance} onClose={handleDeleteClose} refreshTable={props.refreshTable}/>
         </Modal>
         <div className="row">
           <div className="col mt-3 pl-0 pr-0">
-            {props.ambulanceServices.length !== 0?
+            {props.ambulances.length !== 0?
                 <DataTable
                     className="table-sm w-100"
                     columns={tableColumns}
@@ -90,11 +89,8 @@ function AmbulanceTable(props) {
                     pointerOnHover
                     pagination={true}
                     customStyles={customStyles}
-                    expandableRows={true}
-                    expandOnRowClicked={true}
                     expandOnRowDoubleClicked={false}
                     expandableRowsHideExpander={false}
-                    expandableRowsComponent={ExpandedRow}
                 />
                 :
                 <div className="row pl-3 pr-4 justify-content-center">

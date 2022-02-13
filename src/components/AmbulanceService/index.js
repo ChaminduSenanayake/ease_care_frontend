@@ -9,7 +9,6 @@ import {GET_SERVICE_PROVIDERS} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import axios from 'axios';
 import Spinner from "../Common/spinner";
-import {STATUS} from "../Common/const";
 
 function AmbulanceService() {
     useEffect(() => {

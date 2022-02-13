@@ -1,4 +1,3 @@
-import React, { useState} from "react";
 import "../../assets/css/AmbulanceService-Style.css";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
@@ -9,8 +8,6 @@ import moment from "moment";
 
 function EditService(props) {
     const { register, handleSubmit , setValue} = useForm();
-    const [status, setStatus] = useState(null);
-    const [registerdDate, setRegisterdDate] = useState(null);
 
     useMountEffect(() => {
         // setStatus(props.selectedProvider.status);

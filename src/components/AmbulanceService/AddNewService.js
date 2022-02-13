@@ -8,7 +8,7 @@ import {notifyToast} from "../Common/ToastNotification";
 import moment from "moment";
 
 function AddNewService(props) {
-    const { register, handleSubmit , errors} = useForm();
+    const { register, handleSubmit } = useForm();
 
     useEffect(() => {
         $("#navBarTitle").text("New Ambulance Service");
