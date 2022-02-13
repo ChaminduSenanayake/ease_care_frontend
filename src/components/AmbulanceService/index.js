@@ -5,7 +5,7 @@ import "../../assets/css/AmbulanceService-Style.css";
 import {HiPlus} from "react-icons/all";
 import AddNewService from "./AddNewService";
 import ServiceTable from "./ServiceTable";
-import {GET_AMBULANCE_SERVICES} from "../Common/Endpoints";
+import {GET_SERVICE_PROVIDERS} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import axios from 'axios';
 import Spinner from "../Common/spinner";
@@ -26,13 +26,10 @@ function AmbulanceService() {
         setLoading(true);
         axios({
             method: 'GET',
-            url: GET_AMBULANCE_SERVICES,
+            url: GET_SERVICE_PROVIDERS,
         }).then(response => {
             setLoading(false);
             setDataSet(response.data);
-            if(response.data.paymentStatus === undefined || response.data.paymentStatus === null){
-                response.data.paymentStatus = STATUS[1];
-            }
         }).catch(error => {
             if (error.data) {
                 notifyToast('Error', "error");

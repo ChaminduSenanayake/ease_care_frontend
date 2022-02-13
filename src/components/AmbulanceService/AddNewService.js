@@ -3,7 +3,7 @@ import $ from "jquery";
 import "../../assets/css/AmbulanceService-Style.css";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
-import { REGISTER_AMBULANCE_SERVICE} from "../Common/Endpoints";
+import {REGISTER_SERVICE_PROVIDER} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import moment from "moment";
 
@@ -14,17 +14,15 @@ function AddNewService(props) {
         $("#navBarTitle").text("New Ambulance Service");
     });
 
-console.log(new Date())
     const registerService = data => {
         const formatedData = {
             ...data,
             registeredDate: moment(new Date()).unix(),
             serviceProviderId:0,
-
         };
         axios({
             method: 'POST',
-            url: REGISTER_AMBULANCE_SERVICE,
+            url: REGISTER_SERVICE_PROVIDER,
             data: formatedData
         }).then(response => {
             props.refreshTable();

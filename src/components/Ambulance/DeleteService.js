@@ -29,7 +29,7 @@ function DeleteService(props) {
     const deleteService = data => {
         axios({
             method: 'DELETE',
-            url: DELETE_AMBULANCE_SERVICE+"/"+serviceProviderId,
+            // url: DELETE_AMBULANCE_SERVICE+"/"+serviceProviderId,
         }).then(response => {
             props.refreshTable();
             props.onClose();

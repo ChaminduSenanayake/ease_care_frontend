@@ -1,121 +1,116 @@
-import DataTable from "react-data-table-component";
+import DataTable from  'react-data-table-component'
+import "../../assets/css/AmbulanceService-Style.css";
+import React, {useState} from "react";
+import Modal from "react-bootstrap/Modal";
+import EditService from "./EditService";
+import {customStyles} from "../Common/styles";
+import {ExpandedRow} from "./ExpandedRow";
+import DeleteService from "./DeleteService";
 function AmbulanceTable(props) {
-  const customStyles = {
-    table: {
-      style: {
-        border: "1px solid #EAEAEA",
-      },
-    },
-    rows: {
-      style: {
-        minHeight: "56px", // override the row height
-      },
-    },
-    headCells: {
-      style: {
-        fontSize: "15px",
-        fontWeight: "bold",
-      },
-    },
-    cells: {
-      style: {
-        fontSize: "15px",
-      },
-    },
-  };
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const handleEditClose = () => setEditModalVisible(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const handleDeleteClose = () => setDeleteModalVisible(false);
 
+  const [selectedProvider, setSelectedProvider] = useState(null);
+  const showEditModal = (data) => {
+    setSelectedProvider(data);
+    setEditModalVisible(true);
+  }
+  const showDeleteModal = (data) => {
+    setSelectedProvider(data);
+    setDeleteModalVisible(true);
+  }
   const tableColumns = [
     {
-      name: "Service Name",
-      selector: "serviceName",
+      name: 'ServiceProviderName',
+      selector: 'serviceProviderName',
       sortable: true,
       left: false,
-      minWidth: "100px",
+      minWidth: '100px',
     },
     {
-      name: "Vehicle Number",
-      selector: "vehicleNumber",
+      name: 'Contact Number',
+      selector: 'contactNumber',
       sortable: true,
-      left: false,
-      minWidth: "100px",
+      center: false,
+      minWidth: '100px',
     },
     {
-      name: "Driver Name",
-      selector: "driverName",
+      name: 'Email',
+      selector: 'email',
       sortable: true,
       center: false,
     },
     {
-      name: "Driver NIC",
-      selector: "driverNIC",
+      name: 'Status',
+      selector: 'paymentStatus',
       sortable: true,
       center: false,
     },
     {
-      name: "Contact Number",
-      selector: "contactNumber",
-      sortable: true,
-      center: false,
-      minWidth: "100px",
-    },
-
-    {
-      name: "Actions",
-      selector: "actions",
+      name: 'Actions',
+      selector: 'actions',
       sortable: false,
       center: false,
-      minWidth: "250px",
-      format: (row) => {
+      minWidth: '250px',
+      format: row => {
         return (
-          <>
-            <button
-              className="btn btn-sm btn-secondary"
-              type="button"
-              onClick={() => props.onActionClick(row, true)}
-            >
-              Edit
-            </button>
-            <button
-              className="btn btn-sm btn-danger mx-2"
-              type="button"
-              onClick={() => props.onActionClick(row, false)}
-            >
-              Delete
-            </button>
-          </>
-        );
+            <>
+              <button className="btn btn-sm btn-secondary" type="button"
+                      onClick={() => showEditModal(row, true)}>Edit
+              </button>
+              <button className="btn btn-sm btn-danger mx-2" type="button"
+                      onClick={() => showDeleteModal(row, true)}>Delete
+              </button>
+            </>
+        )
       },
     },
   ];
 
   return (
-    <div className="col">
-      <div className="row">
-        <div className="col mt-3 pl-0 pr-0">
-          {props.ambulanceServices.length !== 0 ? (
-            <DataTable
-              className="table-sm w-100"
-              columns={tableColumns}
-              data={props.ambulanceServices}
-              striped={true}
-              center={true}
-              highlightOnHover
-              pointerOnHover
-              pagination={true}
-              progressPending={props.loading}
-              customStyles={customStyles}
-            />
-          ) : (
-            <div className="row pl-3 pr-4 justify-content-center">
-              <label htmlFor="exampleFormControlInput1">
-                There are no records to display
-              </label>
-            </div>
-          )}
+      <div className="col">
+        <Modal show={editModalVisible} onHide={handleEditClose} size="lg" centered>
+          <EditService selectedProvider={selectedProvider} onClose={handleEditClose} refreshTable={props.refreshTable}/>
+        </Modal>
+        <Modal show={deleteModalVisible} onHide={handleDeleteClose} size="lg" centered>
+          <DeleteService selectedProvider={selectedProvider} onClose={handleDeleteClose} refreshTable={props.refreshTable}/>
+        </Modal>
+        <div className="row">
+          <div className="col mt-3 pl-0 pr-0">
+            {props.ambulanceServices.length !== 0?
+                <DataTable
+                    className="table-sm w-100"
+                    columns={tableColumns}
+                    data={props.ambulances}
+                    striped={true}
+                    center={true}
+                    highlightOnHover
+                    pointerOnHover
+                    pagination={true}
+                    customStyles={customStyles}
+                    expandableRows={true}
+                    expandOnRowClicked={true}
+                    expandOnRowDoubleClicked={false}
+                    expandableRowsHideExpander={false}
+                    expandableRowsComponent={ExpandedRow}
+                />
+                :
+                <div className="row pl-3 pr-4 justify-content-center">
+                  <label className="lblTableEmpty" htmlFor="exampleFormControlInput1">
+                    There are no records to display
+                  </label>
+                </div>
+            }
+
+
+          </div>
         </div>
       </div>
-    </div>
-  );
+
+  )
+
 }
 
 export default AmbulanceTable;

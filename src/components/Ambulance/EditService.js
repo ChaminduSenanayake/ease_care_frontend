@@ -31,7 +31,7 @@ function EditService(props) {
         };
         axios({
             method: 'PUT',
-            url: EDIT_AMBULANCE_SERVICE,
+            // url: EDIT_AMBULANCE_SERVICE,
             data: formatedData
         }).then(response => {
             props.refreshTable();

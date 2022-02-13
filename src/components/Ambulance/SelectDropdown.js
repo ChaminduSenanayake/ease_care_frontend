@@ -11,22 +11,25 @@ const SelectDropdown = React.forwardRef((props, ref) => {
       '&:hover': {
         color: 'inherit',
         background: '#bfc8ff'
-      }
+      },
     }),
     control: () => ({
       border: '1px solid #ced4da',
       borderColor: props.hasError ? 'red' : '#ced4da',
       borderRadius: 4,
-      height: props.height ? props.height : 38,
+      height: props.height ? props.height : 50,
       display: 'flex',
       alignItems: 'center',
       minWidth: '100%',
       width: props.width ? props.width : 'unset',
-      backgroundColor: props.isDisabled ? '#e9ecef' : '#fff'
+      backgroundColor: props.isDisabled ? '#e9ecef' : '#fff',
+      marginRight:'-22px',
     }),
     singleValue: () => ({
-      borderColor: 'red'
-    })
+      borderColor: 'red',
+      paddingBottom: '20px'
+    }),
+
   }
 
   useEffect(() => {
@@ -43,32 +46,31 @@ const SelectDropdown = React.forwardRef((props, ref) => {
   }
 
   return (
-    <>
-      <Select
-        placeholder="Select"
-        options={props.options}
-        getOptionLabel={props.getOptionLabel}
-        getOptionValue={props.getOptionValue}
-        isMulti={false}
-        isSearchable={false}
-        styles={customStyles}
-        components={{ IndicatorSeparator: () => null }}
-        onChange={val => handleChange(val)}
-        // defaultValue={props.defaultValue}
-        value={props.defaultValue ? props.options.filter(option => option.value === props.defaultValue.value) : props.options.filter(option => option.value === value)}
-        isDisabled={props.isDisabled}
-        className={props.className}
-      />
-      <input
-        id={props.id}
-        ref={ref}
-        name={props.name}
-        type="hidden"
-        value={value != null ? value : ''}
-        // value={value}
-        onChange={val => setValue(val)}
-      />
-    </>
+      <>
+        <Select
+            placeholder="Select"
+            options={props.options}
+            getOptionLabel={props.getOptionLabel}
+            getOptionValue={props.getOptionValue}
+            isMulti={false}
+            isSearchable={false}
+            styles={customStyles}
+            components={{ IndicatorSeparator: () => null }}
+            onChange={val => handleChange(val)}
+            value={props.defaultValue ? props.options.filter(option => option.value === props.defaultValue.value) : props.options.filter(option => option.value === value)}
+            isDisabled={props.isDisabled}
+            className={props.className}
+        />
+        <input
+            id={props.id}
+            ref={ref}
+            name={props.name}
+            type="hidden"
+            value={value != null ? value : ''}
+            // value={value}
+            onChange={val => setValue(val)}
+        />
+      </>
   )
 });
 

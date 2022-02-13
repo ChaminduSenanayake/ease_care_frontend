@@ -7,9 +7,10 @@ import AddNewAmbulance from "./AddNewAmbulance";
 import AmbulanceTable from "./AmbulanceTable";
 import addNewAmbulance from "../Ambulance/AddNewAmbulance";
 import axios from "axios";
-import {GET_AMBULANCE_SERVICES} from "../Common/Endpoints";
-import {STATUS} from "../Common/const";
+import {GET_AMBULANCES, GET_AMBULANCES_BY_PROVIDER, GET_SERVICE_PROVIDERS} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
+import SelectDropdown from "./SelectDropdown";
+import Spinner from "../Common/spinner";
 
 function AmbulanceService() {
     useEffect(() => {
@@ -18,21 +19,62 @@ function AmbulanceService() {
     const [modalVisible, setModalVisible] = useState(false);
     const handleClose = () => setModalVisible(false);
     const handleShow = () => setModalVisible(true);
-    const [dataSet, setDataSet] = useState([]);
+    const [serviceProviders, setServiceProviders] = useState([]);
+    const [ambulances, setAmbulances] = useState([]);
     const [loading, setLoading] = useState(false);
     const [count, setCount] = useState(0);
-
+    const [serviceProviderId, setServiceProviderId] = useState(-1);
 
     useEffect(() => {
+        axios({
+            method: 'GET',
+            url: GET_SERVICE_PROVIDERS,
+        }).then(response => {
+            if(response.data){
+                let providers = [];
+                for (let i = 0 ; i < response.data.length ; i++){
+                    let provider = response.data[i];
+                    providers.push({
+                        label : provider.serviceProviderName,
+                        value : provider.serviceProviderId
+                    })
+                }
+                setServiceProviders(providers);
+            }
+        }).catch(error => {
+            if (error.data) {
+                notifyToast('Error', "error");
+            } else {
+                notifyToast("You are Offline!", "warning");
+            }
+        });
+        getAmbulances();
+    },[])
+
+    const addAllOption =(value) => {
+        let providers = value.map(x =>x);
+            providers.push({
+                label : "All",
+                value : -1
+            })
+        return providers;
+    }
+
+    useEffect(() => {
+        getAmbulances();
+    },[serviceProviderId,count])
+
+    const getAmbulances =() => {
+        console.log(serviceProviderId)
         setLoading(true);
         axios({
             method: 'GET',
-            url: GET_AMBULANCE_SERVICES,
+            url: serviceProviderId == -1 ? GET_AMBULANCES : GET_AMBULANCES_BY_PROVIDER +"/" +serviceProviderId,
         }).then(response => {
             setLoading(false);
-            setDataSet(response.data);
-            if(response.data.paymentStatus === undefined || response.data.paymentStatus === null){
-                response.data.paymentStatus = STATUS[1];
+            if(response.data){
+                setAmbulances(response.data);
+                console.log(response.data)
             }
         }).catch(error => {
             if (error.data) {
@@ -42,42 +84,40 @@ function AmbulanceService() {
             }
             setLoading(false);
         });
-    },[count])
-    const [filterText, setFilterText] = useState("");
-    const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-    const filteredItems = dataset.filter(
-        (item) =>
-            item.serviceName &&
-            item.serviceName.toLowerCase().includes(filterText.toLowerCase())
-    );
-
+    }
 
 
     return (
         <div>
             <Modal show={modalVisible} onHide={handleClose} size="lg" centered>
-                <AddNewAmbulance onClose={handleClose}/>
+                <AddNewAmbulance onClose={handleClose} serviceProviders={serviceProviders} setServiceProviderId={setServiceProviderId} refreshTable={() => setCount(count+1)}/>
             </Modal>
-            <div className="topDiv text-end mt-5 me-5">
-                <button className="btn btn-addNew" onClick={handleShow}>
-                    <HiPlus size="35px"/> Add New Ambulance
-                </button>
-            </div>
-
             <div className="mx-5">
-                <div className=" mb-4">
-                    <input
-                        className="searchBox"
-                        placeholder="Search Service Name"
-                        onChange={(e) => setFilterText(e.target.value)}
+                <div className="mt-5">
+                    <label>Select Service Provider</label>
+                    <SelectDropdown
+                        id="serviceProvider"
+                        name="serviceProvider"
+                        options={addAllOption(serviceProviders)}
+                        onChange={d => setServiceProviderId(d.value)}
+                        className="selectDropdown"
                     />
                 </div>
-                <AmbulanceTable
-                    ambulanceServices={filteredItems}
-                    totalData={15}
-                    loading={loading}
-                    onActionClick={addNewAmbulance}
-                />
+                <div className="topDiv text-end mt-5">
+                    <button className="btn btn-addNew" onClick={handleShow}>
+                        <HiPlus size="35px"/> Add New Ambulance
+                    </button>
+                </div>
+                {/*{loading ?*/}
+                {/*    <Spinner/>*/}
+                {/*    :*/}
+                {/*    <AmbulanceTable*/}
+                {/*        ambulances={ambulances}*/}
+                {/*        totalData={15}*/}
+                {/*        loading={loading}*/}
+                {/*        onActionClick={addNewAmbulance}*/}
+                {/*    />*/}
+                {/*}*/}
             </div>
         </div>
     );

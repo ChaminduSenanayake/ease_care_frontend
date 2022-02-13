@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import "../../assets/css/AmbulanceService-Style.css";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
-import { EDIT_AMBULANCE_SERVICE } from "../Common/Endpoints";
+import {EDIT_SERVICE_PROVIDER} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
 import moment from "moment";
@@ -31,7 +31,7 @@ function EditService(props) {
         };
         axios({
             method: 'PUT',
-            url: EDIT_AMBULANCE_SERVICE,
+            url: EDIT_SERVICE_PROVIDER,
             data: formatedData
         }).then(response => {
             props.refreshTable();

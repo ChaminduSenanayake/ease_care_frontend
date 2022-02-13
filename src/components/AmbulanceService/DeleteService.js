@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from "react";
-import $ from "jquery";
+import React, { useState} from "react";
 import "../../assets/css/AmbulanceService-Style.css";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
-import {DELETE_AMBULANCE_SERVICE} from "../Common/Endpoints";
+import {DELETE_SERVICE_PROVIDER} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
-import {styles} from "../Common/styles";
 import {useMountEffect} from "@react-hookful/core";
 
 function DeleteService(props) {
@@ -29,7 +27,7 @@ function DeleteService(props) {
     const deleteService = data => {
         axios({
             method: 'DELETE',
-            url: DELETE_AMBULANCE_SERVICE+"/"+serviceProviderId,
+            url: DELETE_SERVICE_PROVIDER+"/"+serviceProviderId,
         }).then(response => {
             props.refreshTable();
             props.onClose();
