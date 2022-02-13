@@ -5,6 +5,9 @@ import Modal from "react-bootstrap/Modal";
 import EditAmbulance from "./EditAmbulance";
 import {customStyles} from "../Common/styles";
 import DeleteService from "./DeleteAmbulance";
+import axios from "axios";
+import {GET_SERVICE_PROVIDER} from "../Common/Endpoints";
+import {notifyToast} from "../Common/ToastNotification";
 function AmbulanceTable(props) {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const handleEditClose = () => setEditModalVisible(false);
@@ -60,7 +63,7 @@ function AmbulanceTable(props) {
                       onClick={() => showEditModal(row, true)}>Edit
               </button>
               <button className="btn btn-sm btn-danger mx-2" type="button"
-                      onClick={() => showDeleteModal(row, true)}>Delete
+                      onClick={() => showDeleteModal(row, true)}>Remove
               </button>
             </>
         )

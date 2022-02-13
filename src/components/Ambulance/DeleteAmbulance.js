@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "../../assets/css/Ambulance-Style.css";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
-import {DELETE_AMBULANCE} from "../Common/Endpoints";
+import {DELETE_AMBULANCE, GET_SERVICE_PROVIDER} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
 
@@ -13,6 +13,7 @@ function DeleteAmbulance(props) {
     const [vehicleNumber, setVehicleNumber] = useState(null);
     const [contactNumber, setContactNumber] = useState(null);
     const [userName, setUserName] = useState(null);
+    const [serviceProvider, setServiceProvider] = useState("");
 
     useMountEffect(() => {
         setDriverName(props.selectedAmbulance.driverName);
@@ -20,6 +21,21 @@ function DeleteAmbulance(props) {
         setVehicleNumber(props.selectedAmbulance.vehicleNumber);
         setUserName(props.selectedAmbulance.userName);
         setContactNumber(props.selectedAmbulance.contactNumber);
+
+        axios({
+            method: 'GET',
+            url: GET_SERVICE_PROVIDER +"/"+props.selectedAmbulance.serviceProviderId,
+        }).then(response => {
+            if(response.data){
+                setServiceProvider(response.data);
+            }
+        }).catch(error => {
+            if (error.data) {
+                notifyToast('Error', "error");
+            } else {
+                notifyToast("You are Offline!", "warning");
+            }
+        })
     })
 
     const deleteAmbulance = data => {
@@ -38,11 +54,21 @@ function DeleteAmbulance(props) {
     return (
         <div className="p-5">
             <label>
-                <b>Register New Ambulance Service</b>
+                <b>Remove Ambulance</b>
             </label>
             <hr/>
             <div>
                 <form onSubmit={handleSubmit(deleteAmbulance)}>
+                    <div className="row form-group">
+                        <label>Ambulance Service</label>
+                        <input
+                            id="serviceProvider"
+                            className="form-control col"
+                            name="serviceProvider"
+                            disabled={true}
+                            value={serviceProvider.serviceProviderName}
+                        />
+                    </div>
                     <div className="row form-group">
                         <label>Vehicale Number</label>
                         <input

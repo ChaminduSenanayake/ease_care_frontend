@@ -56,7 +56,7 @@ function AddNewService(props) {
                             id="hospitalName"
                             className="form-control col"
                             name="hospitalName"
-                            {...register("hospitalName",{required : true})}
+                            {...register("hospitalName")}
                         />
                     </div>
                     <div className="row form-group">

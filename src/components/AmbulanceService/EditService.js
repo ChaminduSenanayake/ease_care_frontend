@@ -42,7 +42,7 @@ function EditService(props) {
     return (
         <div className="p-5">
             <label>
-                <b>Register New Ambulance Service</b>
+                <b>Update Ambulance Service</b>
             </label>
             <hr/>
             <div>

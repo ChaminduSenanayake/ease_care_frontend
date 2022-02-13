@@ -4,11 +4,12 @@ import {useForm} from "react-hook-form";
 import axios from 'axios';
 import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
-import {EDIT_AMBULANCE, GET_AMBULANCE} from "../Common/Endpoints";
+import {EDIT_AMBULANCE, GET_AMBULANCE, GET_SERVICE_PROVIDER} from "../Common/Endpoints";
 
 function EditAmbulance(props) {
     const { register, handleSubmit , setValue} = useForm();
     const [ambulance, setAmbulance] = useState(null);
+    const [serviceProvider, setServiceProvider] = useState("");
 
     useMountEffect(() => {
         setValue("driverName",props.selectedAmbulance.driverName);
@@ -23,6 +24,21 @@ function EditAmbulance(props) {
         }).then(response => {
             if(response.data){
                 setAmbulance(response.data);
+            }
+        }).catch(error => {
+            if (error.data) {
+                notifyToast('Error', "error");
+            } else {
+                notifyToast("You are Offline!", "warning");
+            }
+        })
+
+        axios({
+            method: 'GET',
+            url: GET_SERVICE_PROVIDER +"/"+props.selectedAmbulance.serviceProviderId,
+        }).then(response => {
+            if(response.data){
+                setServiceProvider(response.data);
             }
         }).catch(error => {
             if (error.data) {
@@ -62,11 +78,21 @@ function EditAmbulance(props) {
     return (
         <div className="p-5">
             <label>
-                <b>Register New Ambulance Service</b>
+                <b>Update Ambulance</b>
             </label>
             <hr/>
             <div>
                 <form onSubmit={handleSubmit(editService)}>
+                    <div className="row form-group">
+                        <label>Ambulance Service</label>
+                        <input
+                            id="serviceProvider"
+                            className="form-control col"
+                            name="serviceProvider"
+                            disabled={true}
+                            value={serviceProvider.serviceProviderName}
+                        />
+                    </div>
                     <div className="row form-group">
                         <label>Vehicale Number</label>
                         <input
@@ -129,7 +155,7 @@ function EditAmbulance(props) {
                             className="form-control col"
                             name="newPassword"
                             type="password"
-                            {...register("password",{required: true})}
+                            {...register("password")}
                         />
                     </div>
                     <div className="row form-group text-end mt-4">

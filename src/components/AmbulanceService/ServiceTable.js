@@ -61,7 +61,7 @@ function ServiceTable(props) {
                                 onClick={() => showEditModal(row, true)}>Edit
                         </button>
                         <button className="btn btn-sm btn-danger mx-2" type="button"
-                                onClick={() => showDeleteModal(row, true)}>Delete
+                                onClick={() => showDeleteModal(row, true)}>Remove
                         </button>
                     </>
                 )
