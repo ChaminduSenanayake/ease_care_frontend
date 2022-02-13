@@ -3,6 +3,7 @@ import "../../assets/css/Dashboard-Style.css";
 import $ from "jquery";
 import AmbulanceLocations from "./AmbulanceLocations";
 import TopCard from "./TopCard";
+import UserGraph from "./UserGraph";
 function Dashboard() {
   useEffect(() => {
     $("#navBarTitle").text("DASHBOARD");
@@ -24,7 +25,7 @@ function Dashboard() {
         </div>
       </div>
       <AmbulanceLocations />
-      <div className="row">
+      {/* <div className="row">
         <div className="col-lg-8">
           <div className="card mb-3">
             <div className="card-header">
@@ -65,6 +66,9 @@ function Dashboard() {
             </div>
           </div>
         </div>
+      </div> */}
+      <div>
+        <UserGraph />
       </div>
     </div>
   );
