@@ -5,6 +5,7 @@ import {EDIT_SERVICE_PROVIDER} from "../Common/Endpoints";
 import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
 import moment from "moment";
+import React from "react";
 
 function EditService(props) {
     const { register, handleSubmit , setValue} = useForm();
@@ -17,6 +18,7 @@ function EditService(props) {
         setValue("address",props.selectedProvider.address);
         setValue("contactNumber",props.selectedProvider.contactNumber);
         setValue("email",props.selectedProvider.email);
+        setValue("chargePerKm",props.selectedProvider.chargePerKm);
     })
 
     const editService = data => {
@@ -91,6 +93,16 @@ function EditService(props) {
                             className="form-control col"
                             name="email"
                             {...register("email",)}
+                        />
+                    </div>
+                    <div className="row form-group">
+                        <label>Charge per km</label>
+                        <input
+                            align="right"
+                            id="chargePerKm"
+                            className="form-control col"
+                            name="chargePerKm"
+                            {...register("chargePerKm",{required : true})}
                         />
                     </div>
                     <div className="row form-group">

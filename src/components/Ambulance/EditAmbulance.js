@@ -4,35 +4,23 @@ import {useForm} from "react-hook-form";
 import axios from 'axios';
 import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
-import {EDIT_AMBULANCE, GET_AMBULANCE, GET_SERVICE_PROVIDER} from "../Common/Endpoints";
+import {EDIT_AMBULANCE, GET_SERVICE_PROVIDER} from "../Common/Endpoints";
 
 function EditAmbulance(props) {
     const { register, handleSubmit , setValue} = useForm();
-    const [ambulance, setAmbulance] = useState(null);
     const [serviceProvider, setServiceProvider] = useState("");
+    const [lastSignIn, setLastSignIn] = useState("");
+    const [ambulanceCharge, setAmbulanceCharge] = useState("");
 
     useMountEffect(() => {
         setValue("driverName",props.selectedAmbulance.driverName);
         setValue("driverNIC",props.selectedAmbulance.driverNIC);
-        setValue("vehicleNumber",props.selectedAmbulance.vehicleNumber);
-        setValue("userName",props.selectedAmbulance.userName);
+        setValue("number",props.selectedAmbulance.number);
+        setValue("name",props.selectedAmbulance.name);
         setValue("contactNumber",props.selectedAmbulance.contactNumber);
-
-        axios({
-            method: 'GET',
-            url: GET_AMBULANCE +"/"+props.selectedAmbulance.ambulanceId,
-        }).then(response => {
-            if(response.data){
-                setAmbulance(response.data);
-            }
-        }).catch(error => {
-            if (error.data) {
-                notifyToast('Error', "error");
-            } else {
-                notifyToast("You are Offline!", "warning");
-            }
-        })
-
+        setValue("email",props.selectedAmbulance.email);
+        setLastSignIn(props.selectedAmbulance.lastSignIn);
+        setAmbulanceCharge(props.selectedAmbulance.ambulanceCharge)
         axios({
             method: 'GET',
             url: GET_SERVICE_PROVIDER +"/"+props.selectedAmbulance.serviceProviderId,
@@ -49,14 +37,15 @@ function EditAmbulance(props) {
         })
     },[])
 
-    const editService = data => {
-        if(ambulance.password===data.oldPassword){
+    const editAmbulance = data => {
+        // if(ambulance.password===data.password){
             const formatedData = {
                 ...data,
-                ambulanceId:props.selectedAmbulance.ambulanceId,
+                userId:props.selectedAmbulance.userId,
                 serviceProviderId:props.selectedAmbulance.serviceProviderId,
+                lastSignIn,
+                ambulanceCharge
             };
-            delete formatedData.oldPassword;
             console.log(formatedData)
             axios({
                 method: 'PUT',
@@ -69,9 +58,9 @@ function EditAmbulance(props) {
             }).catch(error => {
                 notifyToast('Error updating the ambulance',"error");
             })
-        }else{
-            notifyToast('Invalid Old Password',"error");
-        }
+        // }else{
+        //     notifyToast('Invalid Old Password',"error");
+        // }
 
     }
 
@@ -82,7 +71,7 @@ function EditAmbulance(props) {
             </label>
             <hr/>
             <div>
-                <form onSubmit={handleSubmit(editService)}>
+                <form onSubmit={handleSubmit(editAmbulance)}>
                     <div className="row form-group">
                         <label>Ambulance Service</label>
                         <input
@@ -96,19 +85,19 @@ function EditAmbulance(props) {
                     <div className="row form-group">
                         <label>Vehicale Number</label>
                         <input
-                            id="vehicleNumber"
+                            id="number"
                             className="form-control col"
-                            name="vehicleNumber"
-                            {...register("vehicleNumber",{required: true})}
+                            name="number"
+                            {...register("number",{required: true})}
                         />
                     </div>
                     <div className="row form-group">
                         <label>Driver Name</label>
                         <input
-                            id="driverName"
+                            id="name"
                             className="form-control col"
-                            name="driverName"
-                            {...register("driverName",{required: true})}
+                            name="name"
+                            {...register("name",{required: true})}
                         />
                     </div>
                     <div className="row form-group">
@@ -121,6 +110,15 @@ function EditAmbulance(props) {
                         />
                     </div>
                     <div className="row form-group">
+                        <label>Email</label>
+                        <input
+                            id="email"
+                            className="form-control col"
+                            name="email"
+                            {...register("email",{required: true})}
+                        />
+                    </div>
+                    <div className="row form-group">
                         <label>Contact Number</label>
                         <input
                             id="contactNumber"
@@ -130,32 +128,16 @@ function EditAmbulance(props) {
                         />
                     </div>
                     <div className="row form-group">
-                        <label>User Name</label>
+                        <label>Password</label>
                         <input
-                            id = "userNameEdit"
+                            id="p_password"
                             className="form-control col"
-                            name="userName"
-                            {...register("userName",{required: true})}
-                        />
-                    </div>
-                    <div className="row form-group">
-                        <label>Old Password</label>
-                        <input
-                            id = "oldPassword"
-                            className="form-control col"
-                            name="oldPassword"
+                            name="password"
+                            {...register("password", {
+                                required: true,
+                                pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+                            })}
                             type="password"
-                            {...register("oldPassword",{required: true})}
-                        />
-                    </div>
-                    <div className="row form-group">
-                        <label>New Password</label>
-                        <input
-                            id = "newPassword"
-                            className="form-control col"
-                            name="newPassword"
-                            type="password"
-                            {...register("password")}
                         />
                     </div>
                     <div className="row form-group text-end mt-4">

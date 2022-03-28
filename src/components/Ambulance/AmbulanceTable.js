@@ -5,9 +5,6 @@ import Modal from "react-bootstrap/Modal";
 import EditAmbulance from "./EditAmbulance";
 import {customStyles} from "../Common/styles";
 import DeleteService from "./DeleteAmbulance";
-import axios from "axios";
-import {GET_SERVICE_PROVIDER} from "../Common/Endpoints";
-import {notifyToast} from "../Common/ToastNotification";
 function AmbulanceTable(props) {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const handleEditClose = () => setEditModalVisible(false);
@@ -18,6 +15,7 @@ function AmbulanceTable(props) {
   const showEditModal = (data) => {
     setSelectedAmbulance(data);
     setEditModalVisible(true);
+    console.log(selectedAmbulance)
   }
   const showDeleteModal = (data) => {
     setSelectedAmbulance(data);
@@ -26,7 +24,7 @@ function AmbulanceTable(props) {
   const tableColumns = [
     {
       name: 'Vehicle Number',
-      selector: 'vehicleNumber',
+      selector: 'number',
       sortable: true,
       left: false,
       minWidth: '100px',
@@ -40,13 +38,25 @@ function AmbulanceTable(props) {
     },
     {
       name: 'Driver Name',
-      selector: 'driverName',
+      selector: 'name',
       sortable: true,
       center: false,
     },
     {
       name: 'Driver NIC',
       selector: 'driverNIC',
+      sortable: true,
+      center: false,
+    },
+    {
+      name: 'Email',
+      selector: 'email',
+      sortable: true,
+      center: false,
+    },
+    {
+      name: 'Last Sign In',
+      selector: 'lastSignIn',
       sortable: true,
       center: false,
     },

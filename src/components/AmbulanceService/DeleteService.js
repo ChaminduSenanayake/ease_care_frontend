@@ -14,6 +14,7 @@ function DeleteService(props) {
     const [address, setAddress] = useState(false);
     const [contactNumber, setContactNumber] = useState(null);
     const [email, setEmail] = useState(null);
+    const [charge, setCharge] = useState(null);
 
     useMountEffect(() => {
         setServiceProviderId(props.selectedProvider.serviceProviderId);
@@ -22,6 +23,7 @@ function DeleteService(props) {
         setAddress(props.selectedProvider.address);
         setContactNumber(props.selectedProvider.contactNumber);
         setEmail(props.selectedProvider.email);
+        setCharge(props.selectedProvider.chargePerKm);
     })
 
     const deleteService = data => {
@@ -94,6 +96,17 @@ function DeleteService(props) {
                             name="email"
                             value={email}
                             {...register("email")}
+                        />
+                    </div>
+                    <div className="row form-group">
+                        <label>Charge per km</label>
+                        <input
+                            align="right"
+                            id="chargePerKm"
+                            className="form-control col"
+                            name="chargePerKm"
+                            value={charge}
+                            {...register("chargePerKm",{required : true})}
                         />
                     </div>
                     <div className="row form-group text-end mt-4">

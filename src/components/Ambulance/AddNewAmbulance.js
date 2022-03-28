@@ -8,26 +8,24 @@ import SelectDropdown from "./SelectDropdown";
 
 function AddNewAmbulance(props) {
 
-    const { register, handleSubmit, setValue, getValues} = useForm();
+    const {register, handleSubmit} = useForm();
     const [serviceProvider, setServiceProvider] = useState(null);
 
-    const setUserName = (value) => {
-        setValue("userName" , value);
-    }
-    const setPassword = (value) => {
-        setValue("password" , value);
-    }
-
-
     const registerService = data => {
-        if (!serviceProvider){
-            notifyToast('Please select an ambulance service',"error");
+        if (!serviceProvider) {
+            notifyToast('Please select an ambulance service', "error");
             return
         }
-        console.log(serviceProvider)
+        let servicePro = props.serviceProviders.find(x => x.value === serviceProvider);
+        if (data.password !== data.confirmPassword) {
+            notifyToast('Invalid Passwords', "error");
+            return;
+        }
+        console.log(props.serviceProviders);
         const formatedData = {
             ...data,
-            serviceProviderId : serviceProvider
+            serviceProviderId: serviceProvider,
+            ambulanceCharge: servicePro.chargePerKm
         };
         axios({
             method: 'POST',
@@ -36,9 +34,9 @@ function AddNewAmbulance(props) {
         }).then(response => {
             props.refreshTable();
             props.onClose();
-            notifyToast('successfully Registerd',"success");
+            notifyToast('successfully Registerd', "success");
         }).catch(error => {
-            notifyToast('Error creating new ambulance'+error,"error");
+            notifyToast('Error creating new ambulance' + error, "error");
         })
     }
     return (
@@ -64,9 +62,8 @@ function AddNewAmbulance(props) {
                         <input
                             id="vehicaleNumber"
                             className="form-control col"
-                            name="vehicaleNumber"
-                            onKeyUp={e =>setUserName(e.target.value)}
-                            {...register("vehicleNumber",{required : true})}
+                            name="number"
+                            {...register("number", {required: true})}
                         />
                     </div>
                     <div className="row form-group">
@@ -74,8 +71,8 @@ function AddNewAmbulance(props) {
                         <input
                             id="driverName"
                             className="form-control col"
-                            name="driverName"
-                            {...register("driverName",{required : true})}
+                            name="name"
+                            {...register("name", {required: true})}
                         />
                     </div>
                     <div className="row form-group">
@@ -84,7 +81,7 @@ function AddNewAmbulance(props) {
                             id="driverNIC"
                             className="form-control col"
                             name="driverNIC"
-                            {...register("driverNIC",{required : true,pattern : /^([0-9]{9}[x|X|v|V]|[0-9]{12})$/})}
+                            {...register("driverNIC", {required: true, pattern: /^([0-9]{9}[x|X|v|V]|[0-9]{12})$/})}
                         />
                     </div>
                     <div className="row form-group">
@@ -93,30 +90,44 @@ function AddNewAmbulance(props) {
                             id="contactNumber"
                             className="form-control col"
                             name="contactNumber"
-                            onKeyUp={e =>setPassword(e.target.value)}
-                            {...register("contactNumber",{required : true, pattern : /^[0-9]{10}$/})}
+                            {...register("contactNumber", {required: true, pattern: /^[0-9]{10}$/})}
                         />
                     </div>
                     <div className="row form-group">
-                        <label>User Name</label>
+                        <label>Email</label>
                         <input
-                            id="userNameReg"
+                            id="email"
                             className="form-control col"
-                            name="userNameReg"
-                            {...register("userName",{required : true})}
+                            name="email"
+                            {...register("email", {required: true})}
                         />
                     </div>
                     <div className="row form-group">
                         <label>Password</label>
                         <input
-                            id="passwordReg"
+                            id="newPassword"
                             className="form-control col"
-                            name="passwordReg"
+                            name="password"
+                            {...register("password", {
+                                required: true,
+                                pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+                            })}
                             type="password"
-                            {...register("password",{required : true})}
                         />
                     </div>
-
+                    <div className="row form-group">
+                        <label>Confirm Password</label>
+                        <input
+                            id="confirmPassword"
+                            className="form-control col"
+                            name="confirmPassword"
+                            {...register("confirmPassword", {
+                                required: true,
+                                pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+                            })}
+                            type="password"
+                        />
+                    </div>
                     <div className="row form-group text-end mt-5">
                         <button
                             type="submit"

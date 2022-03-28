@@ -7,20 +7,20 @@ import {notifyToast} from "../Common/ToastNotification";
 import {useMountEffect} from "@react-hookful/core";
 
 function DeleteAmbulance(props) {
-    const { register, handleSubmit } = useForm();
-    const [driverName, setDriverName] = useState(null);
+    const { handleSubmit } = useForm();
+    const [name, setDriverName] = useState(null);
     const [driverNIC, setDriverNIC] = useState(null);
-    const [vehicleNumber, setVehicleNumber] = useState(null);
+    const [number, setVehicleNumber] = useState(null);
     const [contactNumber, setContactNumber] = useState(null);
-    const [userName, setUserName] = useState(null);
+    const [email, setEmail] = useState(null);
     const [serviceProvider, setServiceProvider] = useState("");
 
     useMountEffect(() => {
-        setDriverName(props.selectedAmbulance.driverName);
+        setDriverName(props.selectedAmbulance.name);
         setDriverNIC(props.selectedAmbulance.driverNIC);
-        setVehicleNumber(props.selectedAmbulance.vehicleNumber);
-        setUserName(props.selectedAmbulance.userName);
+        setVehicleNumber(props.selectedAmbulance.number);
         setContactNumber(props.selectedAmbulance.contactNumber);
+        setEmail(props.selectedAmbulance.email);
 
         axios({
             method: 'GET',
@@ -39,9 +39,10 @@ function DeleteAmbulance(props) {
     })
 
     const deleteAmbulance = data => {
+        console.log(props.selectedAmbulance.userId)
         axios({
             method: 'DELETE',
-            url: DELETE_AMBULANCE+"/"+props.selectedAmbulance.ambulanceId,
+            url: DELETE_AMBULANCE+"/"+props.selectedAmbulance.userId,
         }).then(response => {
             props.refreshTable();
             props.onClose();
@@ -72,19 +73,19 @@ function DeleteAmbulance(props) {
                     <div className="row form-group">
                         <label>Vehicale Number</label>
                         <input
-                            id="vehicaleNumber"
+                            id="number"
                             className="form-control col"
-                            name="vehicaleNumber"
-                            value={vehicleNumber}
+                            name="number"
+                            value={number}
                         />
                     </div>
                     <div className="row form-group">
                         <label>Driver Name</label>
                         <input
-                            id="driverName"
+                            id="name"
                             className="form-control col"
-                            name="driverName"
-                            value={driverName}
+                            name="name"
+                            value={name}
                         />
                     </div>
                     <div className="row form-group">
@@ -97,20 +98,21 @@ function DeleteAmbulance(props) {
                         />
                     </div>
                     <div className="row form-group">
+                        <label>Email</label>
+                        <input
+                            id="email"
+                            className="form-control col"
+                            name="email"
+                            value={email}
+                        />
+                    </div>
+                    <div className="row form-group">
                         <label>Contact Number</label>
                         <input
                             id="contactNumber"
                             className="form-control col"
                             name="contactNumber"
                             value={contactNumber}
-                        />
-                    </div>
-                    <div className="row form-group">
-                        <label>User Name</label>
-                        <input
-                            className="form-control col"
-                            name="userName"
-                            value={userName}
                         />
                     </div>
                     <div className="row form-group text-end mt-4">

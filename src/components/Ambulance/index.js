@@ -36,7 +36,8 @@ function AmbulanceService() {
                     let provider = response.data[i];
                     providers.push({
                         label : provider.serviceProviderName,
-                        value : provider.serviceProviderId
+                        value : provider.serviceProviderId,
+                        chargePerKm : provider.chargePerKm
                     })
                 }
                 setServiceProviders(providers);

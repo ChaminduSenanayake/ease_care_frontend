@@ -87,6 +87,16 @@ function AddNewService(props) {
                             {...register("email",{required : true})}
                         />
                     </div>
+                    <div className="row form-group">
+                        <label>Charge per km</label>
+                        <input
+                            align="right"
+                            id="ambulanceCharge"
+                            className="form-control col"
+                            name="ambulanceCharge"
+                            {...register("ambulanceCharge",{required : true})}
+                        />
+                    </div>
                     <div className="row form-group text-end mt-4">
                         <button
                             type="submit"
