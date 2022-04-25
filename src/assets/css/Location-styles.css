@@ -4,22 +4,13 @@ body {
 }
 
 .App {
-    height: 100vh;
+    height: 72vh;
     width: 100%;
 }
 
 .circle {
+    background-image: url("../images/logo.png");
     background-color: #087bff;
-    border-radius: 50%;
-    color: #fff;
-    height: 2.5em;
-    position: relative;
-    width: 2.5em;
-
-    border: 1px solid transparent;
-}
-.circle-free {
-    background-color: #008b31;
     border-radius: 50%;
     color: #fff;
     height: 2.5em;

@@ -91,10 +91,10 @@ function AddNewService(props) {
                         <label>Charge per km</label>
                         <input
                             align="right"
-                            id="ambulanceCharge"
+                            id="chargePerKm"
                             className="form-control col"
-                            name="ambulanceCharge"
-                            {...register("ambulanceCharge",{required : true})}
+                            name="chargePerKm"
+                            {...register("chargePerKm",{required : true})}
                         />
                     </div>
                     <div className="row form-group text-end mt-4">

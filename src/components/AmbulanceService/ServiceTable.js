@@ -103,8 +103,6 @@ function ServiceTable(props) {
                             </label>
                         </div>
                     }
-
-
                 </div>
             </div>
         </div>

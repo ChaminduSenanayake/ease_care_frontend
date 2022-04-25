@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
+import logo from '../../assets/images/ambulance.png';
 
-const MyMarker = ({text, tooltip, isFree}) => {
-    console.log(isFree);
-    const [name, setClassName] = useState("circle");
+const MyMarker = ({text, tooltip}) => {
     const handleClick = () => {
         console.log(`You clicked on ${tooltip}`);
     };
-    setClassName(isFree ? "circle-free" : "circle");
 
     return (
-        <div className={name} onClick={handleClick}>
+        <div onClick={handleClick}>
+            <img src={logo}/>
             <span className="circleText" title={tooltip}>{text}</span>
         </div>
     );
