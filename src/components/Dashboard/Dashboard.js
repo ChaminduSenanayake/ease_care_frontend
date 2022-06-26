@@ -3,6 +3,7 @@ import "../../assets/css/Dashboard-Style.css";
 import $ from "jquery";
 import AmbulanceLocations from "./AmbulanceLocations";
 import TopCard from "./TopCard";
+
 import UserGraph from "./UserGraph";
 function Dashboard() {
   useEffect(() => {

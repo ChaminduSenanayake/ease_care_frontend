@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   LineChart,
   Line,
@@ -28,9 +29,9 @@ function UserGraph(props: { loading: boolean; data: any }) {
 
   return (
     <div>
-      <Card>
+      <Card style={{ backgroundColor: "#414563" }}>
         <Typography className={classes.h} variant="h5" color="textSecondary">
-          Monthly Users Graph
+          Monthly Users
         </Typography>
         <React.Fragment>
           <ResponsiveContainer width="100%" aspect={5}>
@@ -61,10 +62,13 @@ function UserGraph(props: { loading: boolean; data: any }) {
                 </Label>
               </YAxis>
               <Tooltip
-                formatter={(value: string, name: string, props: any) => [
+                formatter={(value: string, _name: string, props: any) => [
                   "No of Users",
                 ]}
-                contentStyle={{ backgroundColor: "#12152c", color: "#111111" }}
+                contentStyle={{
+                  backgroundColor: "#12152c",
+                  color: "#111111",
+                }}
                 itemStyle={{ color: "#000000" }}
                 cursor={false}
                 active={true}
